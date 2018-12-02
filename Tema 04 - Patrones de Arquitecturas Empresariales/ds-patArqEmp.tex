@@ -46,15 +46,15 @@
     \frametitle{Objetivos del Tema}
     \begin{enumerate}[<+->]
          \item Comprender qué es un \emph{Sistema de Información Empresarial (SIE)}.
-         \item Comprender y por qué y cómo se divide un sistema empresarial en capas.
+         \item Comprender por qué y cómo se divide un SIE en capas.
          \item Comprender la función de cada capa de un SIE.
          \item Conocer las tecnologías sw que se utilizan para implementar SIE.
-         \item Conocer y comprender los patrones existentes para el desarrollo de la \emph{capa de negocio}.
-         \item Comprender y saber utilizar la metodología \emph{Domain-Driven Design (DDD)}.
-         \item Comprender el problema de la impedancia objeto-relacional.   
-         \item Comprender y saber utilizar los patrones para la construcción de un \emph{puente object-relacional}.
-         \item Comprender y saber utilizar los patrones existentes para la construcción de la \emph{capa de servicio}.
-         \item Conocer los patrones existentes para el desarrollo de la \emph{capa de persistencia}.
+         \item Comprender los patrones relacionados con la \emph{capa de negocio}.
+         \item Saber utilizar la metodología \emph{Domain-Driven Design (DDD)}.
+         \item Comprender el problema de la impedancia objeto-relacional.
+         \item Saber utilizar los patrones relacionados con la \emph{capa de persistencia}.
+         \item Saber utilizar los patrones relacionados con la \emph{capa de servicio}.
+         \item Conocer los patrones relacionados con la \emph{capa de presentación}.
     \end{enumerate}
 \end{frame}
 
@@ -67,60 +67,54 @@
         \newblock {\em {Patterns of Enterprise Application Architecture}}.
         \newblock Addison-Wesley Professional.
 
+        \bibitem[Evans, 2003]{Evans2003x}
+        Evans, E. (2003).
+        \newblock {\em {Domain-Driven Design}}.
+        \newblock Addison-Wesley Professional.
+
         \bibitem[Esposito and Saltarello, 2014]{Esposito2014x}
         Esposito, D. and Saltarello, A. (2014).
         \newblock {\em {Microsoft .NET - Architecting Applications for the
           Enterprise}}.
-        \newblock 2 edition.
+        \newblock Microsoft Press. 2ª Ed.
 
     \end{thebibliography}
 \end{frame}
 
-
-\begin{frame}[c]
-    \frametitle{Bibliografía}
-    \begin{thebibliography}{1}
-
-        \bibitem[Schwaber and Sutherland, 2011]{Schwaber2011}
-        Schwaber, K. and Sutherland, J. (2011).
-        \newblock {The Scrum Guide - The Definitive Guide to Scrum: The Rules of the Game}.
-
-        \bibitem[Cohn, 2004]{Cohn2004}
-        Cohn, M. (2004).
-        \newblock {\em {User Stories Applied}},
-        \newblock Addison-Wesley.
-
-    \end{thebibliography}
-\end{frame}
-
-\section{Sistemas y Arquitecturas Empresariales}
+\section{Arquitectura de los Sistemas de Información Empresarial}
 
 \subsection{Sistemas de Información Empresarial}
 
-\begin{frame}
+\begin{frame}[c]
     \frametitle{Sistema de Información Empresarial}
     %% TODO: Buscar una definición mejor o más estandarizada.
     \begin{block}{Sistema de Información  Empresarial (SIE)}
         Un \emph{Sistema de Información Empresarial} es un sistema sw que da soporte a diferentes procesos de negocio de una determinada organización.
     \end{block}
-    \uncover<2->{
-    \begin{block}{Características de los Sistemas de Información Empresariales}
-    \begin{enumerate}
-        \item<3-> Necesita almacenar datos, y normalmente, en gran volumen.
-        \item<4-> Los datos que almacenan representan un activo importante y duradero en el tiempo.
-        \item<5-> Los gestión de los datos debe obedecer a ciertas \emph{reglas de negocio}.
-        \item<6-> Las operaciones ejecutadas necesitan ser \emph{transaccionales}.
-        \item<7-> Los datos pueden ser accedidos y manipulados de manera concurrente. 
-        \item<6-> Utilizan un gran número de interfaces de usuario que pueden requerir de sistemas avanzados de visualización de datos.
-        \item<7-> Interoperan con otros Sistemas de Información Empresarial.
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Características de los SIEs}
+    \begin{enumerate}[<+->]
+        \item Necesita almacenar datos, y normalmente, en gran volumen.
+        \item Los datos que almacenan representan un activo importante y duradero en el tiempo.
+        \item Los gestión de los datos debe obedecer a ciertas \emph{reglas de negocio}.
+        \item Las operaciones ejecutadas necesitan ser \emph{transaccionales}.
+        \item Los datos pueden ser accedidos y manipulados de manera concurrente.
+        \item Utilizan un gran número de interfaces de usuario que pueden requerir de sistemas avanzados de visualización de datos.
+        \item Interoperan con otros Sistemas de Información Empresarial.
     \end{enumerate}
-    \end{block}
-    }
 \end{frame}
 
 \subsection{Sistema de Información Empresarial Web}
 
-%% TODO : Añadir definición de Sistema Web 
+\begin{frame}[c]
+    \frametitle{Sistema Informático Web}
+    %% TODO: Buscar una definición mejor o más estandarizada.
+    \begin{block}{Sistema Informático Web}
+        Un \emph{Sistema Informático Web} es un sistema cliente servidor donde el cliente está codificado utilizando tecnologías web, como HTML, CSS y Javascript, siendo por tanto accesible desde un navegador web; y/o donde el cliente se comunica con el servidor por medio del protocolo HTTP.
+    \end{block}
+\end{frame}
 
 \begin{frame}[c]
 	\frametitle{¿Por qué se utilizan tecnologías Web?}
@@ -145,13 +139,12 @@
             \item<13-> Tecnologías dependientes de terceros.
         \end{enumerate}
     }
-}
+\end{frame}
 
 \subsection{Arquitecturas Empresariales en Capas}
 
 \begin{frame}[c]
-	\frametitle{Arquitectura en Capas de un Sistema de Información Empresarial}
-    %% TODO: Revisar arquitectura para eliminar referencias a patrones específicos.
+	\frametitle{Arquitectura en Capas de un SIE}
 	\begin{center}
         \includegraphics[width=\linewidth,keepaspectratio=true]{images/enterpriseLayers/enterpriseLayers.eps}
 	\end{center}
@@ -201,7 +194,7 @@
 	\end{enumerate}
 \end{frame}
 
-\subsection{Tecnologías de Implementación para Arquitecturas Empresariales}
+\subsection{Tecnologías de Implementación}
 
 \begin{frame}[c]
 	\frametitle{Tecnologías de Implementación ES}
@@ -227,39 +220,242 @@
 
 \section{Capa de Negocio}
 
+\subsection{Problema Común}
+
+\begin{frame}
+    \frametitle{Problema Común a los Patrones de la Capa de Negocio}
+    \begin{block}{Problema Común}
+        El problema común a los patrones de la capa de negocio es donde colocar la 
+        lógica de negocio de manera que se satisfagan las responsabilidades de la capa de negocio.
+    \end{block}
+    %% Poner ejemplo común
+\end{frame}
+
 \subsection{Table Module}
+
+\begin{frame}[c]
+    \frametitle{Table Module (deprecated)}
+    \begin{block}{Solución Table Module}
+        Crear una clase que gestione la lógica de negocio de una tabla (o vista) completa. 
+    \end{block}
+    %% Poner ejemplo
+    %% Crear ejemplo en GWT y subirlo a Git.
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Table Module (obsoleto)}
+    \centering{\textbf{Ventajas}}
+    \begin{enumerate}   
+        \item<2-> Facilidad de uso en lenguajes 4GL.
+    \end{enumerate}
+    \uncover<3->{
+        \centering{\textbf{Desventajas}}
+        \begin{enumerate}
+            \item<4-> Dificulta la gestión de datos residentes en varias tablas.    
+            \item<5-> Manipula mal instancias en solitario.
+            \item<6-> No utiliza orientación a objetos.
+            \item<7-> Genera problemas de integración con otras aplicaciones.
+            \item<8-> Crea rápidamente problemas de redundancia en la lógica de negocio.
+            \item<9-> Genera problemas con reglas de negocio complejas.
+        \end{enumerate}
+    }
+\end{frame}
+
+%\begin{frame}
+%    \framtitle{\emph{Smart UI Antipattern} }
+%
+%    %% Put all the business logic into the user interface. Chop the application into
+%    %% small functions and implement them as separate user interfaces, embedding
+%    %% the business rules into them. Use a relational database as a shared repository of
+%    %% the data. Use the most automated UI building and visual programming tools available.
+%
+%Advantages
+%Productivity is high and immediate for simple applications.
+%Less capable developers can work this way with little training.
+%Even deficiencies in requirements analysis can be overcome by releasing a prototype to users
+%and then quickly changing the product to fit their requests.
+%Applications are decoupled from each other, so that delivery schedules of small modules can
+%be planned relatively accurately. Expanding the system with additional, simple behavior can
+%be easy.
+%Relational databases work well and provide integration at the data level.
+%4GL tools work well.
+%When applications are handed off, maintenance programmers will be able to quickly redo
+%portions they can't figure out, because the effects of the changes should be localized to each
+%particular UI.
+%Disadvantages
+%Integration of applications is difficult except through the database.
+%There is no reuse of behavior and no abstraction of the business problem. Business rules
+%have to be duplicated in each operation to which they apply.
+%Rapid prototyping and iteration reach a natural limit because the lack of abstraction limits
+%refactoring options.
+%Complexity buries you quickly, so the growth path is strictly toward additional simple
+%applications. There is no graceful path to richer behavior.
+%\end{frame}
 
 \subsection{Transaction Script}
 
-\subsection{Domain Model}
-
-\section{Domain-Driven Design}
-
 \begin{frame}[c]
-	\frametitle{Domain-Driven Design}
-	\begin{block}{Principio Básico Domain-Driven Design}
-        Las tecnologías van y vienen, los negocios (dominios) permanecen.
-	\end{block}
+    \frametitle{Transaction Script (obsoleto)}
+    \begin{block}{Solución Transaction Script}
+        Crear un conjunto de funciones que respondan a los eventos que se puedan generar 
+        desde la interfaz de usuario, ejecutando para ello la lógica de negocio que sea necesaria.
+    \end{block}
+    %% Poner ejemplo
+    %% Crear ejemplo y subirlo a Git.
 \end{frame}
 
 \begin{frame}[c]
-	\frametitle{Domain-Driven Design}
-    \begin{block}{Elementos de Domain-Driven Design}
-        \begin{enumerate}[<+->]
-              \item Ubiquitous language.
-            \item Bounded Context.
-            \item Context or Strategic Map.
-            \item Value Objects.
-            \item Entities.
-            \item Modules.
-            \item Aggregate and Aggregate Roots.
-            \item Repositories.
-            \item Services.
-            \item Factorías.
+    \frametitle{Transaction Script (deprecated)}
+    \centering{\textbf{Ventajas}}
+    \begin{enumerate}
+        \item<2-> Facilidad de implementación y comprensión en aplicaciones sencillas.
+    \end{enumerate}
+    \uncover<3->{
+        \centering{\textbf{Desventajas}}
+        \begin{enumerate}
+            \item<4-> Dificulta la gestión de datos residentes en varias tablas.
+            \item<6-> No utiliza orientación a objetos.
+            \item<8-> Crea rápidamente problemas de redundancia en la lógica de negocio.
+            \item<9-> Genera problemas con reglas de negocio complejas.
         \end{enumerate}
+    }
+\end{frame}
+
+\subsection{Domain Model + Service Layer}
+
+\begin{frame}[c]
+    \frametitle{Domain Model}
+    \begin{block}{Solución Domain Model}
+        Modela el dominio del problema utilizando orientación a objetos y distribuye las reglas de negocio de manera adecuada entre las clases de dominio que corresponda.
+    \end{block}
+    %% Poner ejemplo
+    %% Crear ejemplo y subirlo a Git.
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Domain Model}
+    \centering{\textbf{Ventajas}}
+    \begin{enumerate}
+        \item<2-> Orientado a objetos.
+        \item<3-> Permite la utilización de patrones de diseño.
+        \item<4-> Reduce la redundancia de código.
+        \item<5-> Soporta mejor las reglas de negocio complejas. 
+        \item<6-> Ofrece una mayor complejidad de evolución.
+    \end{enumerate}
+    \uncover<7->{
+        \centering{\textbf{Desventajas}}
+        \begin{enumerate}
+            \item<8-> Impedancia objeto-relacional u objeto-xxx.
+            \item<9-> Mayor complejidad de diseño e implementación.
+        \end{enumerate}
+    }
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Service Layer}
+    \begin{block}{Solución Domain Model}
+        Aislar al modelo de dominio de otras capas y aplicaciones mediante la creación de una capa de servicio que: 
+        \begin{enumerate}
+            \item Especifique las operaciones a las cuales el modelo de dominio es capaz de responder.
+            \item Permita redirigir peticiones a las operaciones del modelo de dominio que corresponda, devolviendo la respuesta que corresponda.
+            \item [Opcional] Permite encapsular la \emph{lógica de la aplicación} o \emph{workflow}.
     \end{block}
 \end{frame}
 
+\begin{frame}[c]
+    \frametitle{Service Layer}
+    \begin{block}{Lógica de la Aplicación}
+        Lógica que no pertenece al dominio en sí, sino al funcionamiento de una aplicación/proceso concreto.  
+    \end{block}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Domain Model}
+    \centering{\textbf{Ventajas}}
+    \begin{enumerate}
+        \item<2-> Aisla al modelo de dominio de servicios concretos.
+        \item<3-> Favorece la gestión de la lógica de la aplicación.
+        \item<3-> Favorece la gestión de la concurrencia.
+    \end{enumerate}
+\end{frame}
+
+\section{Domain-Driven Design}
+
+\subsection{Introducción}
+
+\begin{frame}[c]
+    \frametitle{Domain-Driven Design}
+     \begin{block}{Domain-Driven Design}
+     \alert{\emph{Domain-Driven Design}} es una técnica de desarrollo sw donde todo el diseño de un producto sw gira en torno a un elemento central y fundamental que es el \emph{modelo de dominio}, el cual captura el dominio y la lógica de negocio de dicho producto sw.
+     \end{block}
+      %% Contar la historia de Monty Python
+      %% Libro de 
+      %% Contar la historia del PCB
+      %% Ventajas e Incovenientes: https://goo.gl/gPx5DE
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Domain-Driven Design}
+     \begin{block}{Ubiquitous Language}
+     TODO
+     \end{block}
+     %% Leer Capítulo 3 de Evans
+\end{frame}
+
+\begin{frame}{c}
+   \frametitle{Domain-Driven Design}
+   \begin{enumerate}
+      \item Entities.
+      \item Value objects.
+      \item Services.
+      \item Modules.
+      \item Aggregates.
+      \item Repositories.
+   \end{enumerate}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Domain-Driven Design}
+     \begin{block}{Entities}
+     Una \emph{entity} es un objeto del dominio con una identidad clara que debe ser preservada y por la que es reconocida.
+     \end{block}
+     %% Ejemplo de asiento en función numerada y no numerada.
+     %% "Beyond identity issues, entities tend to fulfill their responsabilities by coordinating the operations
+     %%  of objects they own"
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Características de los Identificadores}
+    \begin{itemize}
+        \item Inmutables.
+        \item Significativos.
+    \end{itemize}
+    %% Copiar de Fowler.
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Claves Naturales vs Claves Surogadas}
+    %% Copiar de Fowler.
+\end{frame}
+
+\begin{frame}{c}
+   \frametitle{Domain-Driven Design}
+   \begin{enumerate}
+      \item Entities.
+      \item \alert{Value objects}.
+      \item Services.
+      \item Modules.
+      \item Aggregates.
+      \item
+   \end{enumerate}
+\end{frame}
+
+\begin{frame}{c}
+    \frametitle{Value Objects}
+    \begin{block}{Value Objects}
+    Objetos del dominio sin identidad definida, cuya existencia no es necesario monitorizar y es con frecuencia volátil.
+    \end{block}
+\end{frame}
 
 \section{Sumario y Referencias}
 
