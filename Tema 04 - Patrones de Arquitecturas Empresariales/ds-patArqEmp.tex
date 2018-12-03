@@ -225,7 +225,7 @@
 \begin{frame}
     \frametitle{Problema Común a los Patrones de la Capa de Negocio}
     \begin{block}{Problema Común}
-        El problema común a los patrones de la capa de negocio es donde colocar la 
+        El problema común a los patrones de la capa de negocio es donde colocar la
         lógica de negocio de manera que se satisfagan las responsabilidades de la capa de negocio.
     \end{block}
     %% Poner ejemplo común
@@ -236,7 +236,7 @@
 \begin{frame}[c]
     \frametitle{Table Module (deprecated)}
     \begin{block}{Solución Table Module}
-        Crear una clase que gestione la lógica de negocio de una tabla (o vista) completa. 
+        Crear una clase que gestione la lógica de negocio de una tabla (o vista) completa.
     \end{block}
     %% Poner ejemplo
     %% Crear ejemplo en GWT y subirlo a Git.
@@ -245,13 +245,13 @@
 \begin{frame}[c]
     \frametitle{Table Module (obsoleto)}
     \centering{\textbf{Ventajas}}
-    \begin{enumerate}   
+    \begin{enumerate}
         \item<2-> Facilidad de uso en lenguajes 4GL.
     \end{enumerate}
     \uncover<3->{
         \centering{\textbf{Desventajas}}
         \begin{enumerate}
-            \item<4-> Dificulta la gestión de datos residentes en varias tablas.    
+            \item<4-> Dificulta la gestión de datos residentes en varias tablas.
             \item<5-> Manipula mal instancias en solitario.
             \item<6-> No utiliza orientación a objetos.
             \item<7-> Genera problemas de integración con otras aplicaciones.
@@ -297,7 +297,7 @@
 \begin{frame}[c]
     \frametitle{Transaction Script (obsoleto)}
     \begin{block}{Solución Transaction Script}
-        Crear un conjunto de funciones que respondan a los eventos que se puedan generar 
+        Crear un conjunto de funciones que respondan a los eventos que se puedan generar
         desde la interfaz de usuario, ejecutando para ello la lógica de negocio que sea necesaria.
     \end{block}
     %% Poner ejemplo
@@ -339,7 +339,7 @@
         \item<2-> Orientado a objetos.
         \item<3-> Permite la utilización de patrones de diseño.
         \item<4-> Reduce la redundancia de código.
-        \item<5-> Soporta mejor las reglas de negocio complejas. 
+        \item<5-> Soporta mejor las reglas de negocio complejas.
         \item<6-> Ofrece una mayor complejidad de evolución.
     \end{enumerate}
     \uncover<7->{
@@ -354,18 +354,19 @@
 \begin{frame}[c]
     \frametitle{Service Layer}
     \begin{block}{Solución Domain Model}
-        Aislar al modelo de dominio de otras capas y aplicaciones mediante la creación de una capa de servicio que: 
+        Aislar al modelo de dominio de otras capas y aplicaciones mediante la creación de una capa de servicio que:
         \begin{enumerate}
             \item Especifique las operaciones a las cuales el modelo de dominio es capaz de responder.
             \item Permita redirigir peticiones a las operaciones del modelo de dominio que corresponda, devolviendo la respuesta que corresponda.
             \item [Opcional] Permite encapsular la \emph{lógica de la aplicación} o \emph{workflow}.
+        \end{enumerate}
     \end{block}
 \end{frame}
 
 \begin{frame}[c]
     \frametitle{Service Layer}
     \begin{block}{Lógica de la Aplicación}
-        Lógica que no pertenece al dominio en sí, sino al funcionamiento de una aplicación/proceso concreto.  
+        Lógica que no pertenece al dominio en sí, sino al funcionamiento de una aplicación/proceso concreto.
     \end{block}
 \end{frame}
 
@@ -389,82 +390,107 @@
      \alert{\emph{Domain-Driven Design}} es una técnica de desarrollo sw donde todo el diseño de un producto sw gira en torno a un elemento central y fundamental que es el \emph{modelo de dominio}, el cual captura el dominio y la lógica de negocio de dicho producto sw.
      \end{block}
       %% Contar la historia de Monty Python
-      %% Libro de 
       %% Contar la historia del PCB
       %% Ventajas e Incovenientes: https://goo.gl/gPx5DE
 \end{frame}
 
-\begin{frame}[c]
-    \frametitle{Domain-Driven Design}
-     \begin{block}{Ubiquitous Language}
-     TODO
-     \end{block}
-     %% Leer Capítulo 3 de Evans
-\end{frame}
-
-\begin{frame}{c}
-   \frametitle{Domain-Driven Design}
-   \begin{enumerate}
-      \item Entities.
-      \item Value objects.
-      \item Services.
-      \item Modules.
-      \item Aggregates.
-      \item Repositories.
-   \end{enumerate}
-\end{frame}
-
+%%\begin{frame}[c]
+%%    \frametitle{Domain-Driven Design}
+%%     \begin{block}{Ubiquitous Language}
+%%
+%%     \end{block}
+%%     %% Leer Capítulo 3 de Evans
+%%\end{frame}
+%
+%\subsection{Entities}
+%
 \begin{frame}[c]
     \frametitle{Domain-Driven Design}
      \begin{block}{Entities}
-     Una \emph{entity} es un objeto del dominio con una identidad clara que debe ser preservada y por la que es reconocida.
+        Una \emph{entity} es un objeto del dominio con una identidad y un ciclo de vida que deben ser reconocidos y monitorizados.
      \end{block}
      %% Ejemplo de asiento en función numerada y no numerada.
      %% "Beyond identity issues, entities tend to fulfill their responsabilities by coordinating the operations
-     %%  of objects they own"
+     %%  of the objects they own"
 \end{frame}
-
-\begin{frame}[c]
-    \frametitle{Características de los Identificadores}
-    \begin{itemize}
-        \item Inmutables.
-        \item Significativos.
-    \end{itemize}
-    %% Copiar de Fowler.
-\end{frame}
-
-\begin{frame}[c]
-    \frametitle{Claves Naturales vs Claves Surogadas}
-    %% Copiar de Fowler.
-\end{frame}
-
-\begin{frame}{c}
-   \frametitle{Domain-Driven Design}
-   \begin{enumerate}
-      \item Entities.
-      \item \alert{Value objects}.
-      \item Services.
-      \item Modules.
-      \item Aggregates.
-      \item
-   \end{enumerate}
-\end{frame}
-
-\begin{frame}{c}
-    \frametitle{Value Objects}
-    \begin{block}{Value Objects}
-    Objetos del dominio sin identidad definida, cuya existencia no es necesario monitorizar y es con frecuencia volátil.
-    \end{block}
-\end{frame}
-
-\section{Sumario y Referencias}
-
-\begin{frame}[c]
-    \frametitle{¿Qué Tengo que Saber de Todo Esto?}
-    \begin{enumerate}[<+->]
-        \item
-    \end{enumerate}
-\end{frame}
+%
+%%\begin{frame}[c]
+%%    \frametitle{Características de los Identificadores}
+%%    \begin{itemize}
+%%        \item Inmutables.
+%%        \item Significativos.
+%%    \end{itemize}
+%%    %% Copiar de Fowler.
+%%\end{frame}
+%
+%%\begin{frame}[c]
+%%    \frametitle{Claves Naturales vs Claves Surogadas}
+%%    %% Copiar de Fowler.
+%%\end{frame}
+%
+%\subsection{Value Objects}
+%
+%\begin{frame}{c}
+%    \frametitle{Value Objects}
+%    \begin{block}{Value Objects}
+%    Objetos del dominio sin identidad definida, cuya existencia no es necesario monitorizar.
+%    \end{block}
+%\end{frame}
+%
+%\subsection{Services}
+%
+%\begin{frame}{c}
+%    \frametitle{Value Objects}
+%    \begin{block}{Value Objects}
+%    TODO.
+%    \end{block}
+%\end{frame}
+%
+%\subsection{Modules}
+%
+%\begin{frame}{c}
+%    \frametitle{Modules}
+%    \begin{block}{Modules}
+%    TODO.
+%    \end{block}
+%\end{frame}
+%
+%\subsection{Aggregates}
+%
+%\begin{frame}{c}
+%    \frametitle{Aggregates}
+%    \begin{block}{Aggregates}
+%    TODO.
+%    \end{block}
+%\end{frame}
+%
+%\subsection{Repositories}
+%
+%\begin{frame}{c}
+%    \frametitle{Repositories}
+%    \begin{block}{Repositories}
+%    TODO.
+%    \end{block}
+%\end{frame}
+%
+%\subsection{Factories}
+%
+%\begin{frame}{c}
+%    \frametitle{Factories}
+%    \begin{block}{Factories}
+%    TODO.
+%    \end{block}
+%\end{frame}
+%
+%
+%\section{Sumario y Referencias}
+%
+%\begin{frame}[c]
+%    \frametitle{¿Qué Tengo que Saber de Todo Esto?}
+%    \begin{enumerate}[<+->]
+%        \item TODO
+%    \end{enumerate}
+%\end{frame}
 
 %\subsection{Referencias}
 %
