@@ -372,7 +372,7 @@
     \end{block}
     \uncover<2->{
         \begin{block}{Lógica de la Aplicación}
-            La \emph{lógica de la aplicación} es el conjunto de procedimientos, restricciones y normas que rigen el funcionamiento de una determinada aplicación. Es la encargada de gestionar elementos como transacciones, accesos a almacenes persistentes o seguridad. 
+            La \emph{lógica de la aplicación} es el conjunto de procedimientos, restricciones y normas que rigen el funcionamiento de una determinada aplicación. Es la encargada de gestionar elementos como transacciones, accesos a almacenes persistentes o seguridad.
         \end{block}
     }
 \end{frame}
@@ -398,8 +398,8 @@
       %% Contar la historia de Monty Python
       %% Contar la historia del PCB
       %% Ventajas e Incovenientes: https://goo.gl/gPx5DE
-    
-      %% Add Page 8 documento de Evans.     
+
+      %% Add Page 8 documento de Evans.
 
 \end{frame}
 
@@ -414,13 +414,22 @@
 \subsection{Entities}
 
 \begin{frame}[c]
-    \frametitle{Domain-Driven Design}
+    \frametitle{Domain-Driven Design - Entities}
      \begin{block}{Entities}
-        Una \emph{entity} es un objeto del dominio con una identidad y un ciclo de vida que deben ser reconocidos y monitorizados.
+        Una \emph{entity} es un objeto del dominio con una identidad y un ciclo de vida que debe ser reconocido y monitorizados.
      \end{block}
+     \uncover<2->{
+         \begin{block}{Características de un Identificador}
+            %% Olvidarse del problema de las claves surrogadas de las bases de datos relacionales.
+            \item<3-> Únicos para cada objeto e inmutables. 
+            \item<4-> Pueden ser un único atributo o combinación de atributos.
+            \item<5-> Si no se encuentra un identificador natural, puede ser generado por la aplicación.
+            \item<6-> Si son generados, se esconden (normalmente) al usuario.
+        \end{block}
+     }
      %% Ejemplo de asiento en función numerada y no numerada.
-     %% "Beyond identity issues, entities tend to fulfill their responsabilities by coordinating the operations
-     %%  of the objects they own"
+     %% "Beyond identity issues, entities tend to fulfill their responsabilities 
+     %% by coordinating the operations of the objects they own"
 \end{frame}
 
 \subsection{Value Objects}
@@ -428,16 +437,25 @@
 \begin{frame}{c}
     \frametitle{Value Objects}
     \begin{block}{Value Objects}
-    Objetos del dominio sin identidad definida, cuya existencia no es necesario monitorizar.
+        Elementos del dominio sin identidad definida, cuya existencia no es necesario monitorizar, y que simplemente representan valores de alguna propiedad de una entidad. 
+        %% Si me dan otro objeto, no tiene porque ser exactamente el mismo, me vale con que tenga 
+        %% sus mismas propiedades. 
     \end{block}
+     \uncover<2->{
+         \begin{block}{Características de un \emph{Value Object}}
+            %% Olvidarse del problema de las claves surrogadas de las bases de datos relacionales.
+            \item<3-> Dos instancias con los mismos valores se consideran idénticas, aunque tengan identidades distintas.
+            \item<4-> Se recomienda hacer los \emph{value objects} inmutables.
+        \end{block}
+     }
 \end{frame}
 
 \subsection{Services}
 
 \begin{frame}{c}
-    \frametitle{Value Objects}
-    \begin{block}{Value Objects}
-    TODO.
+    \frametitle{Services}
+    \begin{block}{Services}
+        Un \emph{service} encapsula operaciones de dominio que no son responsabilidad natural de ninguna \emph{entity} o \emph{value object}.
     \end{block}
 \end{frame}
 
@@ -486,6 +504,15 @@
 %%        \item Significativos.
 %%    \end{itemize}
 %%    %% Copiar de Fowler.
+%%
+%%    Ids. 
+%%
+%%    - Únicos para cada objeto.
+%%    - Un único atributo o combinación de atributos.
+%%    - Artificial, generado por la aplicación (ojo con los sistemas distribuidos o interconectados)
+%%    - Inmutables       
+%%    - IDs artificiales pueden esconderse al usuario.
+%%    -   
 %%\end{frame}
 %
 %%\begin{frame}[c]
