@@ -222,7 +222,7 @@
 
 \subsection{Problema Común}
 
-\begin{frame}
+\begin{frame}[c]
     \frametitle{Problema Común a los Patrones de la Capa de Negocio}
     \begin{block}{Problema Común}
         El problema común a los patrones de la capa de negocio es donde colocar la
@@ -248,6 +248,7 @@
     \begin{enumerate}
         \item<2-> Facilidad de uso en lenguajes 4GL.
     \end{enumerate}
+    \ \\ \ \\
     \uncover<3->{
         \centering{\textbf{Desventajas}}
         \begin{enumerate}
@@ -310,7 +311,7 @@
     \begin{enumerate}
         \item<2-> Facilidad de implementación en aplicaciones sencillas.
     \end{enumerate}
-    \ \\
+    \ \\ \ \\
     \uncover<3->{
         \centering{\textbf{Desventajas}}
         \begin{enumerate}
@@ -343,7 +344,7 @@
         \item<5-> Soporta mejor las reglas de negocio complejas.
         \item<6-> Ofrece una mayor facilidad de evolución.
     \end{enumerate}
-    \ \\
+    \ \\ \ \\
     \uncover<7->{
         \centering{\textbf{Desventajas}}
         \begin{enumerate}
@@ -393,14 +394,13 @@
 \begin{frame}[c]
     \frametitle{Domain-Driven Design}
      \begin{block}{Domain-Driven Design}
-     \alert{\emph{Domain-Driven Design}} es una técnica de desarrollo sw donde todo el diseño de un producto sw gira en torno a un elemento central y fundamental que es el \emph{modelo de dominio}, el cual captura el dominio y la lógica de negocio de dicho producto sw.
+        \alert{\emph{Domain-Driven Design}} es una técnica de desarrollo sw donde todo el diseño de un producto sw gira en torno a un elemento central y fundamental que es el \emph{modelo de dominio}, el cual captura el dominio y la lógica de negocio de dicho producto sw.
      \end{block}
       %% Contar la historia de Monty Python
       %% Contar la historia del PCB
       %% Ventajas e Incovenientes: https://goo.gl/gPx5DE
 
       %% Add Page 8 documento de Evans.
-
 \end{frame}
 
 %%\begin{frame}[c]
@@ -414,88 +414,128 @@
 \subsection{Entities}
 
 \begin{frame}[c]
-    \frametitle{Domain-Driven Design - Entities}
-     \begin{block}{Entities}
+    \frametitle{Entities}
+     \begin{block}{Entity}
         Una \emph{entity} es un objeto del dominio con una identidad y un ciclo de vida que debe ser reconocido y monitorizados.
      \end{block}
      \uncover<2->{
          \begin{block}{Características de un Identificador}
             %% Olvidarse del problema de las claves surrogadas de las bases de datos relacionales.
-            \item<3-> Únicos para cada objeto e inmutables. 
-            \item<4-> Pueden ser un único atributo o combinación de atributos.
-            \item<5-> Si no se encuentra un identificador natural, puede ser generado por la aplicación.
-            \item<6-> Si son generados, se esconden (normalmente) al usuario.
-        \end{block}
+            \begin{enumerate}
+                \item<3-> Únicos para cada objeto e inmutables.
+                \item<4-> Pueden ser un único atributo o combinación de atributos.
+                \item<5-> Si no se encuentra un identificador natural, puede ser generado por la aplicación.
+                \item<6-> Si son generados, se esconden (normalmente) al usuario.
+            \end{enumerate}
+         \end{block}
      }
      %% Ejemplo de asiento en función numerada y no numerada.
-     %% "Beyond identity issues, entities tend to fulfill their responsabilities 
+     %% "Beyond identity issues, entities tend to fulfill their responsabilities
      %% by coordinating the operations of the objects they own"
 \end{frame}
 
 \subsection{Value Objects}
 
-\begin{frame}{c}
+\begin{frame}[c]
     \frametitle{Value Objects}
-    \begin{block}{Value Objects}
-        Elementos del dominio sin identidad definida, cuya existencia no es necesario monitorizar, y que simplemente representan valores de alguna propiedad de una entidad. 
-        %% Si me dan otro objeto, no tiene porque ser exactamente el mismo, me vale con que tenga 
-        %% sus mismas propiedades. 
+    \begin{block}{Value Object}
+        Elementos del dominio sin identidad definida, cuya existencia no es necesario monitorizar, y que simplemente representan valores de alguna propiedad de una entidad.
+        %% Si me dan otro objeto, no tiene porque ser exactamente el mismo, me vale con que tenga
+        %% sus mismas propiedades.
     \end{block}
-     \uncover<2->{
+    \uncover<2->{
          \begin{block}{Características de un \emph{Value Object}}
             %% Olvidarse del problema de las claves surrogadas de las bases de datos relacionales.
-            \item<3-> Dos instancias con los mismos valores se consideran idénticas, aunque tengan identidades distintas.
-            \item<4-> Se recomienda hacer los \emph{value objects} inmutables.
+            \begin{enumerate}    
+                \item<3-> Dos instancias con los mismos valores se consideran idénticas, aunque tengan identidades distintas.
+                \item<4-> Se recomienda hacer los \emph{value objects} inmutables.
+            \end{enumerate}
         \end{block}
      }
 \end{frame}
 
 \subsection{Services}
 
-\begin{frame}{c}
+\begin{frame}[c]
     \frametitle{Services}
-    \begin{block}{Services}
+    \begin{block}{Service}
         Un \emph{service} encapsula operaciones de dominio que no son responsabilidad natural de ninguna \emph{entity} o \emph{value object}.
     \end{block}
-\end{frame}
-
-\subsection{Modules}
-
-\begin{frame}{c}
-    \frametitle{Modules}
-    \begin{block}{Modules}
-    TODO.
-    \end{block}
+    \uncover<2->{
+         \begin{block}{Características de un \emph{Service}}
+            %% Declaración trimestal del IVA.
+            \begin{enumerate}
+                \item<3-> Forma parte del \emph{lenguaje universal} del dominio.
+                \item<4-> Su interfaz está definida en base a otros elementos del modelo de dominio.
+                \item<5-> Su operación u operaciones no tienen estado (\emph{stateless}).
+            \end{enumerate}
+        \end{block}
+     }
 \end{frame}
 
 \subsection{Aggregates}
 
-\begin{frame}{c}
+\begin{frame}[c]
     \frametitle{Aggregates}
-    \begin{block}{Aggregates}
-    TODO.
+    \begin{block}{Aggregate}
+        Un \emph{aggregate} es un conjunto cohesionado de \emph{entities} y \emph{value objects} con una frontera clara con el resto del modelo de dominio y un conjunto de invariantes bien definidos que deben preservarse dentro de dicho conjunto. 
     \end{block}
+    \uncover<2->{
+        \begin{block}{Aggregate Root}
+            Dentro de un \emph{aggregate}, el \emph{aggregate root} es una \emph{entity} que controla el ciclo de vida del resto de los elementos del \emph{aggregate} y que contiene la información necesaria para encargarse de la preservación de los invariantes. 
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Características de los \emph{Aggregates}}
+    \begin{enumerate}[<+->]
+        %% Alumno y expediente
+        \item El \emph{aggregate root} debe tener identidad global.
+        \item El resto de elementos del \emph{aggregate} sólo necesita tener identidad local.
+        \item El \emph{aggregate root} es el encargado de preservar los invariantes.
+        \item El tiempo de vida de un \emph{aggregate} debe ser uniforme a sus miembros.
+        \item Los elementos externos al \emph{aggregate} sólo deben referenciar al \emph{aggregate root}.
+        \item Los elementos internos de un \emph{aggregate} sólo pueden referenciar como elementos externos \emph{aggregate roots}.
+        \item Los elementos internos de un \emph{aggregate} sólo deben utilizarse de manera transitoria fuera del \emph{aggregate}.
+        \item Sólo los \emph{aggregate roots} pueden ser recuperados de persistencia.
+        \item Si se elimina un \emph{aggregate root}, se debe eliminar todo el \emph{aggregate}. 
+    \end{enumerate}
 \end{frame}
 
 \subsection{Repositories}
 
 \begin{frame}{c}
     \frametitle{Repositories}
-    \begin{block}{Repositories}
-    TODO.
+    \begin{block}{Repository}
+        Un \emph{repository} representa una clase que, a nivel conceptual, representa una colección con todas las instancias de una determinado elemento del dominio. El repositorio debe además proporcionar métodos para recuperar conjuntos de instancias concretos dentro de dicha colección, añadir nuevas instancias o eliminarlas.
     \end{block}
 \end{frame}
 
-\subsection{Factories}
-
-\begin{frame}{c}
-    \frametitle{Factories}
-    \begin{block}{Factories}
-    TODO.
-    \end{block}
+\begin{frame}[c]
+    \frametitle{Características de los \emph{Repositories}}
+    \begin{enumerate}[<+->]
+        %% Alumno y expediente
+        \item Sólo existirán \emph{repositories} para los \emph{aggregates root}.
+        \item Normalmente, existirá un \emph{repository} por cada \emph{aggregate root}.
+        \item Cada \emph{repository} contendrá las operaciones CRUD básicas, más un método para recuperar todas las instancias de un elemento del dominio.
+        \item Además, cada \emph{repository} contendrá otros métodos de búsqueda o cálculo siempre y cuando sean necesarios.
+        %% Ojo con los repositorios, no son mágicos.
+    \end{enumerate}
 \end{frame}
 
-\subsection{Identificación de Entidades}
+\subsection{Otros elementos DDD}
+
+\begin{frame}[c]
+    \frametitle{Otros elementos DDD}
+    \begin{enumerate}[<+->]
+        \item Domain Events.
+        \item Modules.
+        \item Factories.
+    \end{enumerate}
+\end{frame}
+
+% \subsection{Identificación de Entidades}
 
 %%\begin{frame}[c]
 %%    \frametitle{Características de los Identificadores}
@@ -505,14 +545,14 @@
 %%    \end{itemize}
 %%    %% Copiar de Fowler.
 %%
-%%    Ids. 
+%%    Ids.
 %%
 %%    - Únicos para cada objeto.
 %%    - Un único atributo o combinación de atributos.
 %%    - Artificial, generado por la aplicación (ojo con los sistemas distribuidos o interconectados)
-%%    - Inmutables       
+%%    - Inmutables
 %%    - IDs artificiales pueden esconderse al usuario.
-%%    -   
+%%    -
 %%\end{frame}
 %
 %%\begin{frame}[c]
@@ -520,59 +560,7 @@
 %%    %% Copiar de Fowler.
 %%\end{frame}
 %
-\subsection{Value Objects}
 
-\begin{frame}{c}
-    \frametitle{Value Objects}
-    \begin{block}{Value Objects}
-    Objetos del dominio sin identidad definida, cuya existencia no es necesario monitorizar.
-    \end{block}
-\end{frame}
-
-\subsection{Services}
-
-\begin{frame}{c}
-    \frametitle{Value Objects}
-    \begin{block}{Value Objects}
-    TODO.
-    \end{block}
-\end{frame}
-
-\subsection{Modules}
-
-\begin{frame}{c}
-    \frametitle{Modules}
-    \begin{block}{Modules}
-    TODO.
-    \end{block}
-\end{frame}
-
-\subsection{Aggregates}
-
-\begin{frame}{c}
-    \frametitle{Aggregates}
-    \begin{block}{Aggregates}
-    TODO.
-    \end{block}
-\end{frame}
-
-\subsection{Repositories}
-
-\begin{frame}{c}
-    \frametitle{Repositories}
-    \begin{block}{Repositories}
-    TODO.
-    \end{block}
-\end{frame}
-
-\subsection{Factories}
-
-\begin{frame}{c}
-    \frametitle{Factories}
-    \begin{block}{Factories}
-    TODO.
-    \end{block}
-\end{frame}
 
 %\section{Sumario y Referencias}
 %
