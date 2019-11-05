@@ -1,81 +1,15 @@
-\documentclass[a4paper,slidestop,xcolor=pst,dvips,blue]{beamer}
-\newcommand{\imp}[1]{\color {blue}{\small{\tt{#1}}}\color{black}}
-\newcommand{\pre}[1]{\{#1\}}
+Ôªø\documentclass[animated,a4paper,slidestop,xcolor=pst,blue]{beamer}
 
-\usepackage{beamerthemesplit}
-\usepackage[latin1]{inputenc}
-\usepackage[spanish]{babel}
-\usepackage{graphicx}
-\usepackage{pstricks} % PSTricks package
-\usepackage{setspace}
-\usepackage{multirow}
-\usepackage{listings}
-\usepackage{pgfpages}
-\usepackage{dsfont}
-\usepackage{hyperref}
-\usepackage{etoolbox}
+\input{slidesHeader.tex}
 
-% \usepackage{lstcustom}
-
-% \lstset{
-%    language    = Java,
-%    style       = eclipse,
-%    basicstyle  = \scriptsize,
-% }
-
-\makeatletter
-\patchcmd{\beamer@sectionintoc}{\vskip1.5em}{\vskip0.5em}{}{}
-\makeatother
-
-\setbeamercovered{dynamic}
-\setcounter{tocdepth}{2}
-\setbeamercolor{frametitle}{fg=black,bg=white}
-\setbeamercolor{section in toc shaded}{fg=black}
-\setbeamercolor{section in toc}{fg=red}
-\setbeamercolor{subsection in toc shaded}{fg=black}
-\setbeamercolor{subsection in toc}{fg=red}
-\setbeamerfont{section in toc}{size=\small}
-\setbeamerfont{subsection in toc}{size=\small}
-\setbeamertemplate{section in toc shaded}[default][99]
-\setbeamertemplate{subsection in toc shaded}[default][99]
-
-\AtBeginSection[]
-{\begin{frame}[c]
-  \frametitle{Õndice}
-	\tableofcontents[currentsection,
-        sectionstyle=show/shaded,
-        subsectionstyle=hide]
-\end{frame}}
-
-\AtBeginSubsection[]
-{\begin{frame}[c]
-	\frametitle{Õndice}
-	\tableofcontents[
-  		currentsection,
-  		sectionstyle=shaded/shaded,
-  		currentsubsection,
-  		subsectionstyle=show/shaded/hide
-		]
-\end{frame}}
-
-\setbeamertemplate{frametitle}{
-	\begin{centering}
-		\insertframetitle
-		\par
-	\end{centering}
-}
-
-\usetheme[secheader]{Boadilla}
-
-\title[Patrones de DiseÒo]{Tema 3 - Patrones de DiseÒo, \\
-Refactorizaciones y Antipatrones}
+\title[Patrones de Dise√±o]{Patrones de Dise√±o, Refactorizaciones y Antipatrones}
 
 \author[Pablo S\'{a}nchez]{\alert{Pablo S\'{a}nchez}}
 
 \institute[I2E]{
 		   Dpto. Ingenier{\'i}a Inform{\'a}tica y Electr{\'o}nica \\
 		   Universidad de Cantabria \\
-		   Santander (Cantabria, EspaÒa) \\
+		   Santander (Cantabria, Espa√±a) \\
 		   p.sanchez@unican.es
 }
 
@@ -83,144 +17,276 @@ Refactorizaciones y Antipatrones}
 
 \begin{document}
 
-%\begin{frame}[c]
-%	\titlepage
-%	\vspace{-20pt}
-%%	\begin{columns}
-%%		\column{.45\linewidth}
-%%			\centering \includegraphics[width=.33\textwidth,keepaspectratio=true]{images/logoMatesco.eps}
-%%		\column{.45\linewidth}
-%			\centering
-%			\includegraphics[width=.15\textwidth,keepaspectratio=true]{images/uc.eps}
-%%	\end{columns}
-%\end{frame}
+\begin{frame}[c]
+	\titlepage
+	\begin{columns}
+		\column{0.50\linewidth}
+			\centering
+    		\includegraphics[width=.28\textwidth,keepaspectratio=true]{images/istr.eps}
+		\column{0.50\linewidth}
+			\centering
+			\includegraphics[width=.25\textwidth,keepaspectratio=true]{images/uc.eps}
+	\end{columns}
+\end{frame}
 
-%\section{IntroducciÛn}
-%
-%\subsection{Objetivos}
-%
-%\begin{frame}[c]
-%	\frametitle{Objetivos}
-%	\begin{block}{Objetivos}
-%		\begin{enumerate}[<+->]
-%			\item<1-> Comprender en concepto de patrÛn de diseÒo, refactorizaciÛn y antipatrÛn.
-%			\item<2-> Saber aplicar ciertos patrones de diseÒo.
-%			\item<5-> Saber aplicar ciertas refactorizaciones.
-%			\item<6-> Saber identificar y manejar de manera adecuada ciertos antipatrones.
-%		\end{enumerate}
-%	\end{block}
-%\end{frame}
-%
-%\subsection{BibliografÌa B·sica}
-%
-%\begin{frame}
-%	\frametitle{BibliografÌa B·sica}
-%\begin{thebibliography}{1}
-%
-%\bibitem{gamma:1994}
-%Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides.
-%\newblock {\em {Design Patterns: Elements of Reusable Object-Oriented
-%  Software}}.
-%\newblock Addison Wesley, November 1994.
-%
-%\bibitem{fowler:1999}
-%Martin Fowler.
-%\newblock {\em {Refactoring: Improving the Design of Existing Code}}.
-%\newblock Addison Wesley, July 1999.
-%
-%\bibitem{brown:1998}
-%William~J. Brown, Raphael~C. Malveau, Hays W.~"Skip" McCormick, and Thomas~J.
-%  Mowbray.
-%\newblock {\em {AntiPatterns: Refactoring Software, Architectures and Projects
-%  in Crisis}}.
-%\newblock Wiley, April 1998.
-%
-%\end{thebibliography}
-%\end{frame}
-%
-%\section{Patrones de DiseÒo}
+\section{Introducci√≥n}
 
-%\subsection{MotivaciÛn}
-%
+\subsection{Objetivos}
+
+\begin{frame}[c]
+	\frametitle{Objetivos}
+	\begin{block}{Objetivos}
+		\begin{enumerate}[<+->]
+			\item Comprender en concepto de patr√≥n de dise√±o, refactorizaci√≥n y antipatr√≥n.
+			\item Saber aplicar ciertos patrones de dise√±o.
+			\item Saber aplicar ciertas refactorizaciones.
+			\item Saber identificar y manejar de manera adecuada ciertos antipatrones.
+		\end{enumerate}
+	\end{block}
+\end{frame}
+
+\subsection{Bibliograf√≠a B√°sica}
+
+\begin{frame}
+	\frametitle{Bibliograf√≠a B√°sica}
+\begin{thebibliography}{1}
+
+\bibitem{gamma:1994}
+Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides.
+\newblock {\em {Design Patterns: Elements of Reusable Object-Oriented
+  Software}}.
+\newblock Addison Wesley, November 1994.
+
+\bibitem{fowler:1999}
+Martin Fowler.
+\newblock {\em {Refactoring: Improving the Design of Existing Code}}.
+\newblock Addison Wesley, July 1999.
+
+\bibitem{brown:1998}
+William~J. Brown, Raphael~C. Malveau, Hays W.~"Skip" McCormick, and Thomas~J.
+  Mowbray.
+\newblock {\em {AntiPatterns: Refactoring Software, Architectures and Projects
+  in Crisis}}.
+\newblock Wiley, April 1998.
+
+\end{thebibliography}
+\end{frame}
+
+\section{Concepto de Patr√≥n, Antipatr√≥n y Refactorizaci√≥n}
+
+\subsection{Patrones de Dise√±o Sw}
+
+\subsubsection{Motivaci√≥n}
+
+\begin{frame}[c]
+	\frametitle{Motivaci√≥n}
+	\begin{center}
+		\includegraphics[width=0.85\linewidth]{images/motivacion/arcos.eps}
+	\end{center}
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Motivaci√≥n}
+	\begin{center}
+		\includegraphics[width=0.45\linewidth]{images/motivacion/miyagi.eps}
+	\end{center}
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Motivaci√≥n}
+	\begin{center}
+		\textbf{Gol de Puyol a Alemania Sud√°frica 2010} \href{http://www.youtube.com/watch?v=Tnt7C2L6d3M}{(ver)}
+	\end{center}
+\end{frame}
+
+\subsubsection{Definici√≥n de Patr√≥n de Dise√±o Sw}
+
+\begin{frame}[c]
+	\frametitle{Patr√≥n de Dise√±o Software}
+	\begin{block}{Patr√≥n de Dise√±o Software}
+		\alert<2>{Soluci√≥n probada y beneficiosa} a \alert<3>{problemas recurrentes} que aparecen continuamente durante el dise√±o de un producto software.
+	\end{block}
+	\uncover<4->{
+	\begin{block}{Patr√≥n de Dise√±o Software (Gamma et al, 1994)}
+		Una descripci√≥n de c√≥mo interconectar clases y objetos de forma que puedan resolver un problema general de dise√±o dentro de un contexto determinado.
+	\end{block}
+	}
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Estructura de un Patr√≥n}
+	\begin{enumerate}
+		\item<+-> Nombre (y alias).
+		\item<+-> Clasificaci√≥n.
+		\item<+-> Prop√≥sito.
+		\item<+-> Motivaci√≥n.
+		\item<+-> Aplicabilidad.
+		\item<+-> Estructura.
+		\item<+-> Participantes.
+		\item<+-> Interacci√≥n entre participantes.
+		\item<+-> Consecuencias.
+		\item<+-> Implementaci√≥n.
+		\item<+-> Ejemplos con c√≥digo.
+		\item<+-> Usos conocidos.
+		\item<+-> Patrones relacionados.
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Tipos de Patr√≥n}
+	\begin{description}
+		\item<+->[Creacionales] Relativos a problemas relacionados con la creaci√≥n de objetos (ej. Factor√≠a).
+		\item<+->[Estructurales] Relativos a problemas relacionados con las relaciones y dependencias est√°ticas entre clases y objetos (ej. Peso mosca).
+		\item<+->[De comportamiento] Relativos a problemas relacionados el comportamiento de clases y objetos en tiempo de ejecuci√≥n (ej. Estrategia).
+	\end{description}
+\end{frame}
+
+\subsection{Refactorizaciones}
+
+\begin{frame}[c]
+	\frametitle{Refactorizaciones}
+	\begin{block}{Refactorizaci√≥n}
+	Proceso de cambio de un sistema software de forma que su comportamiento externo no se vea afectado pero que mejora su estructura interna.
+	% (ej. atributos relacionados a clase).
+	% Extraer datos de una direcci√≥n a una clase direcci√≥n
+	\end{block}
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Esquema de una Refactorizaci√≥n}
+	\begin{enumerate}
+		\item<1-> Nombre.
+		\item<2-> S√≠ntomas (bad smells).
+		\item<3-> Causas.
+		\item<4-> Refactorizaciones propuestas.
+		\item<5-> Beneficios esperados.
+		\item<6-> Efectos colaterales y contraindicaciones.
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Code Smells}
+    \begin{block}{Malos olores (\emph{(bad) code smells})}
+		Indicios sobre potenciales problemas en el c√≥digo (ej. c√≥digo replicado, mismo m√©todo en varias subclases).
+	  \end{block}
+\end{frame}
+
+\subsection{Antipatrones}
+
+\begin{frame}[c]
+	\frametitle{Antipatr√≥n de Dise√±o Software}
+	\begin{block}{Antipatr√≥n Software}
+        Un \emph{antipatr√≥n} describe una soluci√≥n que genera consecuencias negativas para el desarrollo de un proyecto pero que se aplica recurrentemente a determinados problema.
+	\end{block}
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Utilidad de los Antipatrones}
+	\begin{enumerate}[<+->]
+        \item Asocian situaciones conflictivas a un \alert{conjunto de soluciones}.
+        \item Identifican situaciones conflictivas recurrentes.
+        \item Proporcionan un vocabulario estandarizado para dichas situaciones conflictivas.
+        \item Empat√≠a en el fallo.
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Origen de los Antipatrones}
+    \begin{enumerate}[<+->]
+        \item Prisas.     % Mala calidad
+        \item Apat√≠a.     % Para qu√©
+        \item Estrechez de miras. % No utilizar nuevas y probadas soluciones
+        \item Pereza.     % Confiar en ya se har√° con la herramienta
+        \item Avaricia.   % Sistema excesivamente complejo
+        \item Ignorancia. % Pereza intelectual.
+        \item Orgullo.    % stdio est√° mal.
+    \end{enumerate}
+\end{frame}
+
 %\begin{frame}[c]
-%	\frametitle{MotivaciÛn}
-%	\begin{center}
-%		\includegraphics[width=0.85\linewidth]{images/motivacion/arcos.eps}
-%	\end{center}
-%\end{frame}
-%
-%\begin{frame}[c]
-%	\frametitle{MotivaciÛn}
-%	\begin{center}
-%		\includegraphics[width=0.45\linewidth]{images/motivacion/miyagi.eps}
-%	\end{center}
-%\end{frame}
-%
-%\begin{frame}[c]
-%	\frametitle{MotivaciÛn}
-%	\begin{center}
-%		\textbf{Gol de Puyol a Alemania Sud·frica 2010} \href{http://www.youtube.com/watch?v=Tnt7C2L6d3M}{(ver)}
-%	\end{center}
-%\end{frame}
-%
-%\section{Concepto de PatrÛn}
-%
-%
-%\subsection{DefiniciÛn de PatrÛn}
-%
-%\begin{frame}[c]
-%	\frametitle{PatrÛn de DiseÒo Software}
-%	\begin{block}{PatrÛn de DiseÒo Software}
-%		\alert<2>{SoluciÛn probada y beneficiosa} a \alert<3>{problemas recurrentes} que aparecen continuamente durante el diseÒo de un producto software.
-%	\end{block}
-%	\uncover<4->{
-%	\begin{block}{PatrÛn de DiseÒo Software (Gamma et al, 1994)}
-%		Una descripciÛn de como interconectar clases y objetos de forma que puedan resolver un problema general de diseÒo dentro de un contexto determinado.
-%	\end{block}
-%	}
-%\end{frame}
-%
-%\subsection{Estructura de un PatrÛn}
-%
-%\begin{frame}[c]
-%	\frametitle{Estructura de un PatrÛn}
+%	\frametitle{Esquema de un Antipatr√≥n}
 %	\begin{enumerate}
-%		\item<+-> Nombre (y alias).
-%		\item<+-> ClasificaciÛn.
-%		\item<+-> PropÛsito.
-%		\item<+-> MotivaciÛn.
-%		\item<+-> Aplicabilidad.
-%		\item<+-> Estructura.
-%		\item<+-> Participantes.
-%		\item<+-> InteracciÛn entre participantes.
-%		\item<+-> Consecuencias.
-%		\item<+-> ImplementaciÛn.
-%		\item<+-> Ejemplos con cÛdigo.
-%		\item<+-> Usos conocidos.
-%		\item<+-> Patrones relacionados.
+%		\item<1-> Nombre.
+%		\item<2-> S√≠ntomas.
+%		\item<3-> Causas.
+%		\item<4-> Refactorizaciones propuestas.
+%		\item<5-> Beneficios esperados.
+%		\item<6-> Efectos colaterales y contraindicaciones.
 %	\end{enumerate}
 %\end{frame}
-%
-%\subsection{Tipos de PatrÛn}
-%
-%\begin{frame}[c]
-%	\frametitle{Tipos de PatrÛn}
-%	\begin{description}
-%		\item<+->[Creacionales] Relativos a problemas relacionados con la creaciÛn de objetos (ej. FactorÌa).
-%		\item<+->[Estructurales] Relativos a problemas relacionados con las relaciones y dependencias est·ticas entre clases y objetos (ej. Peso mosca).
-%		\item<+->[De comportamiento] Relativos a problemas relacionados el comportamiento de clases y objetos en tiempo de ejecuciÛn (ej. Estrategia).
-%	\end{description}
-%\end{frame}
-%
-%\section{Patrones de DiseÒo GoF}
-%
+
+\subsection{Relaci√≥n entre Patrones, Refactorizaciones y Antipatrones}
+
+\begin{frame}[t]
+	\frametitle{Patrones, Refactorizaciones y Antipatrones}
+    \only<1>{
+    \rput[lt](0,-1.5){
+        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema00.eps}}}
+    \only<2>{
+    \rput[lt](0,-1.5){
+        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema01.eps}}}
+    \only<3>{
+    \rput[lt](0,-1.5){
+        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema02.eps}}}
+    \only<4>{
+    \rput[lt](0,-1.5){
+        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema03.eps}}}
+    \only<5>{
+    \rput[lt](0,-1.5){
+        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema04.eps}}}
+    \only<6>{
+    \rput[lt](0,-1.5){
+        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema05.eps}}}
+    \only<7>{
+    \rput[lt](0,-1.5){
+        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema06.eps}}}
+\end{frame}
+
+\section{Patrones de Dise√±o GoF}
+
+\begin{frame}[c]
+	\frametitle{Patrones GoF (Gang of Four) I}
+	\begin{enumerate}
+		\item Composite.
+		\item Interpreter.
+		\item Visitor.
+		\item Strategy.
+		\item Template Method.
+        \item Singleton.
+        \item Factory Method.
+        \item Abstract Factory.
+        \item Prototype.
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Patrones GoF (Gang of Four) II}
+	\begin{enumerate}
+        \item Observer
+        \item Iterator.
+        \item Proxy.
+        \item Adapter.
+        \item State.
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[c]
+	\frametitle{Patrones No GoF}
+	\begin{enumerate}
+		\item Mixin.
+        \item Null Object.
+		\item Pool Object.
+        \item Type.
+	\end{enumerate}
+\end{frame}
+
 %\frame[c]{
-%	\frametitle{Õndice}
+%	\frametitle{√çndice}
 %	\begin{enumerate}
-%		\item IntroducciÛn.
-%		\item Concepto de PatrÛn.
-%		\item \alert{Patrones de diseÒo GoF}.
-%		\item Otros patrones de diseÒo.
+%		\item Introducci√≥n.
+%		\item Concepto de Patr√≥n.
+%		\item \alert{Patrones de dise√±o GoF}.
+%		\item Otros patrones de dise√±o.
 %		\item Antipatrones.
 %		\item Refactorizaciones.
 %		\item Sumario.
@@ -231,7 +297,7 @@ Refactorizaciones y Antipatrones}
 %	\frametitle{Patrones GoF (Gang of Four)}
 %	\begin{enumerate}
 %		\item \alert<2->{Singleton}.
-%		\item FactorÌa abstracta.
+%		\item Factor√≠a abstracta.
 %		\item Adaptador.
 %		\item Estrategia.
 %		\item Estado.
@@ -241,31 +307,31 @@ Refactorizaciones y Antipatrones}
 %\subsection{Singleton}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Singleton}
+%	\frametitle{Patr√≥n Singleton}
 %	\begin{block}{Problema}
-%		SÛlo debe existir una instancia de una clase (ej. driver de ratÛn).
+%		S√≥lo debe existir una instancia de una clase (ej. driver de rat√≥n).
 %	\end{block}
 %	\uncover<2->{
 %	\begin{block}{Aplicabilidad}
-%		SÛlo debe existir una instancia por clase, la cual debe estar accesible desde un punto de entrada bien definido.
+%		S√≥lo debe existir una instancia por clase, la cual debe estar accesible desde un punto de entrada bien definido.
 %	\end{block}
 %	}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Singleton}
+%	\frametitle{Patr√≥n Singleton}
 %	\begin{center}
 %		\includegraphics[width=\linewidth,keepaspectratio=true]{images/gof/singleton00.eps}
 %	\end{center}
 %\end{frame}
 %
-% \subsection{FactorÌa Abstracta}
+% \subsection{Factor√≠a Abstracta}
 %
 %\begin{frame}[c]
 %	\frametitle{Patrones GoF (Gang of Four)}
 %	\begin{enumerate}
 %		\item Singleton.
-%		\item \alert{FactorÌa abstracta}.
+%		\item \alert{Factor√≠a abstracta}.
 %		\item Adaptador.
 %		\item Estrategia.
 %		\item Estado.
@@ -273,7 +339,7 @@ Refactorizaciones y Antipatrones}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn FactorÌa Abstracta}
+%	\frametitle{Patr√≥n Factor√≠a Abstracta}
 %	\begin{block}{Problema}
 %		Dependencia de clases concretas. \\
 %		\uncover<2->{Ej. \texttt{List<Persona> listaAsistentes = new ArrayList<Persona>}}
@@ -281,36 +347,36 @@ Refactorizaciones y Antipatrones}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn FactorÌa Abstracta - Problema}
+%	\frametitle{Patr√≥n Factor√≠a Abstracta - Problema}
 %	\begin{center}
 %		\includegraphics[width=\linewidth,keepaspectratio=true]{images/gof/abstractFactory00.eps}
 %	\end{center}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn FactorÌa Abstracta}
+%	\frametitle{Patr√≥n Factor√≠a Abstracta}
 %	\begin{block}{Aplicabilidad}
 %		\begin{enumerate}
 %			\item<+-> Un sistema debe ser independiente de como sus productos son creados, compuestos y representados.
 %			\item<+-> Un sistema debe ser configurado usando un conjunto coherente de clases concretas.
-%			\item<+-> Deseamos crear una librerÌa de productos, pero sÛlo queremos hacer p˙blicas las interfaces, no las implementaciones.
+%			\item<+-> Deseamos crear una librer√≠a de productos, pero s√≥lo queremos hacer p√∫blicas las interfaces, no las implementaciones.
 %		\end{enumerate}
 %	\end{block}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn FactorÌa Abstracta - SoluciÛn}
+%	\frametitle{Patr√≥n Factor√≠a Abstracta - Soluci√≥n}
 %	\begin{center}
 %		\includegraphics[width=\linewidth,keepaspectratio=true]{images/gof/abstractFactory01.eps}
 %	\end{center}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn FactorÌa Abstracta}
+%	\frametitle{Patr√≥n Factor√≠a Abstracta}
 %	\begin{center}\textbf{Ventajas}\end{center}
 %	\begin{enumerate}
 %		\item<+-> Hace independientes las clases clientes de clases concretas particulares.
-%		\item<+-> Hace m·s f·cil cambiar la configuraciÛn actual de un producto, ya que sÛlo hay que cambiar la factorÌa concreta.
+%		\item<+-> Hace m√°s f√°cil cambiar la configuraci√≥n actual de un producto, ya que s√≥lo hay que cambiar la factor√≠a concreta.
 %		\item<+-> Favorece la consistencia entre productos.
 %	\end{enumerate}
 %\end{frame}
@@ -321,7 +387,7 @@ Refactorizaciones y Antipatrones}
 %	\frametitle{Patrones GoF (Gang of Four)}
 %	\begin{enumerate}
 %		\item Singleton.
-%		\item FactorÌa abstracta.
+%		\item Factor√≠a abstracta.
 %		\item \alert{Adaptador}.
 %		\item Estrategia.
 %		\item Estado.
@@ -329,28 +395,28 @@ Refactorizaciones y Antipatrones}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Adaptador}
+%	\frametitle{Patr√≥n Adaptador}
 %	\begin{block}{Problema}
 %		La interfaz de una clase no se corresponde con la interfaz esperada por los clientes.
 %	\end{block}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Adaptador}
+%	\frametitle{Patr√≥n Adaptador}
 %	\begin{center}
 %		\includegraphics[width=.85\linewidth,keepaspectratio=true]{images/gof/adapter00.eps}
 %	\end{center}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Adaptador}
+%	\frametitle{Patr√≥n Adaptador}
 %	\begin{center}
 %		\includegraphics[width=.9\linewidth,keepaspectratio=true]{images/gof/adapter01.eps}
 %	\end{center}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Adaptador}
+%	\frametitle{Patr√≥n Adaptador}
 %	\begin{center}
 %		\includegraphics[width=.9\linewidth,keepaspectratio=true]{images/gof/adapter02.eps}
 %	\end{center}
@@ -362,7 +428,7 @@ Refactorizaciones y Antipatrones}
 %	\frametitle{Patrones GoF (Gang of Four)}
 %	\begin{enumerate}
 %		\item Singleton.
-%		\item FactorÌa abstracta.
+%		\item Factor√≠a abstracta.
 %		\item Adaptador.
 %		\item \alert{Estrategia}.
 %		\item Estado.
@@ -370,31 +436,31 @@ Refactorizaciones y Antipatrones}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Estrategia}
+%	\frametitle{Patr√≥n Estrategia}
 %	\begin{block}{Problema}
-%		La implementaciÛn de un mÈtodo debe variar, pero queremos hacer a las clases clientes ignoren dicha cuestiÛn.
+%		La implementaci√≥n de un m√©todo debe variar, pero queremos hacer a las clases clientes ignoren dicha cuesti√≥n.
 %	\end{block}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Estrategia}
+%	\frametitle{Patr√≥n Estrategia}
 %	\begin{center}
 %		\includegraphics[width=.65\linewidth,keepaspectratio=true]{images/gof/Strategy00.eps}
 %	\end{center}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Estrategia}
-%	\begin{block}{AplicaciÛn}
+%	\frametitle{Patr√≥n Estrategia}
+%	\begin{block}{Aplicaci√≥n}
 %		\begin{enumerate}
-%			\item<+-> Varias clases sÛlo difieren en el comportamiento de una o dos responsabilidades
-%			\item<+-> Es necesario implementar diversas variantes de un mismo algoritmo y seleccionar una variante concreta en tiempo de ejecuciÛn.
+%			\item<+-> Varias clases s√≥lo difieren en el comportamiento de una o dos responsabilidades
+%			\item<+-> Es necesario implementar diversas variantes de un mismo algoritmo y seleccionar una variante concreta en tiempo de ejecuci√≥n.
 %		\end{enumerate}
 %	\end{block}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Estrategia}
+%	\frametitle{Patr√≥n Estrategia}
 %	\begin{center}
 %		\includegraphics[width=.9\linewidth,keepaspectratio=true]{images/gof/Strategy01.eps}
 %	\end{center}
@@ -406,7 +472,7 @@ Refactorizaciones y Antipatrones}
 %	\frametitle{Patrones GoF (Gang of Four)}
 %	\begin{enumerate}
 %		\item Singleton.
-%		\item FactorÌa abstracta.
+%		\item Factor√≠a abstracta.
 %		\item Adaptador (Wrapper).
 %		\item Estrategia.
 %		\item \alert{Estado}.
@@ -414,35 +480,35 @@ Refactorizaciones y Antipatrones}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Estado}
+%	\frametitle{Patr√≥n Estado}
 %	\begin{block}{Problema}
 %		Un objeto necesita variar su comportamiento cuando cambia de estado.
 %	\end{block}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Estado}
+%	\frametitle{Patr√≥n Estado}
 %	\begin{center}
 %		\includegraphics[width=.50\linewidth,keepaspectratio=true]{images/gof/State00.eps}
 %	\end{center}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Estado}
+%	\frametitle{Patr√≥n Estado}
 %	\begin{center}
 %		\includegraphics[width=\linewidth,keepaspectratio=true]{images/gof/State01.eps}
 %	\end{center}
 %\end{frame}
 %
-%\section{Otros Patrones de DiseÒo}
+%\section{Otros Patrones de Dise√±o}
 %
 %\frame[c]{
-%	\frametitle{Õndice}
+%	\frametitle{√çndice}
 %	\begin{enumerate}
-%		\item IntroducciÛn.
-%		\item Concepto de PatrÛn.
-%		\item Patrones de diseÒo GoF.
-%		\item \alert{Otros patrones de diseÒo}.
+%		\item Introducci√≥n.
+%		\item Concepto de Patr√≥n.
+%		\item Patrones de dise√±o GoF.
+%		\item \alert{Otros patrones de dise√±o}.
 %		\item Antipatrones.
 %		\item Refactorizaciones.
 %		\item Sumario.
@@ -450,72 +516,72 @@ Refactorizaciones y Antipatrones}
 %}
 %
 %\frame[c]{
-%	\frametitle{Patrones de DiseÒo no GoF}
+%	\frametitle{Patrones de Dise√±o no GoF}
 %	\begin{enumerate}
-%		\item \alert<2->{PatrÛn Tipo}.
-%		\item PatrÛn \emph{Mixin}.
+%		\item \alert<2->{Patr√≥n Tipo}.
+%		\item Patr√≥n \emph{Mixin}.
 %	\end{enumerate}
 %}
 %
-%\subsection{PatrÛn Tipo}
+%\subsection{Patr√≥n Tipo}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Tipo}
-%	\begin{block}{AplicaciÛn}
+%	\frametitle{Patr√≥n Tipo}
+%	\begin{block}{Aplicaci√≥n}
 %		\begin{enumerate}
-%			\item Permitir que un objeto pueda cambiar su(s) tipo(s) de forma din·mica en tiempo de ejecuciÛn.
-%			\item Permitir que se puedan crear nuevos tipos de forma din·mica en tiempo de ejecuciÛn.
+%			\item Permitir que un objeto pueda cambiar su(s) tipo(s) de forma din√°mica en tiempo de ejecuci√≥n.
+%			\item Permitir que se puedan crear nuevos tipos de forma din√°mica en tiempo de ejecuci√≥n.
 %		\end{enumerate}
 %	\end{block}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Tipo}
+%	\frametitle{Patr√≥n Tipo}
 %	\begin{center}
 %		\includegraphics[width=\linewidth,keepaspectratio=true]{images/nogof/type00.eps}
 %	\end{center}
 %\end{frame}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Tipo}
+%	\frametitle{Patr√≥n Tipo}
 %	\begin{center}
 %		\includegraphics[width=.65\linewidth,keepaspectratio=true]{images/nogof/type01.eps}
 %	\end{center}
 %\end{frame}
 %
-%\subsection{PatrÛn Mixin}
+%\subsection{Patr√≥n Mixin}
 %
 %\frame[c]{
-%	\frametitle{Patrones de DiseÒo no GoF}
+%	\frametitle{Patrones de Dise√±o no GoF}
 %	\begin{enumerate}
-%		\item PatrÛn Tipo.
-%		\item \alert{PatrÛn \emph{Mixin}}.
+%		\item Patr√≥n Tipo.
+%		\item \alert{Patr√≥n \emph{Mixin}}.
 %	\end{enumerate}
 %}
 %
 %\begin{frame}[c]
-%	\frametitle{PatrÛn Mixin}
-%	\begin{block}{AplicaciÛn}
-%		Permitir herencia m˙ltiple en lenguajes que no permiten herencia m˙ltiple de clases, pero si de interfaces.
+%	\frametitle{Patr√≥n Mixin}
+%	\begin{block}{Aplicaci√≥n}
+%		Permitir herencia m√∫ltiple en lenguajes que no permiten herencia m√∫ltiple de clases, pero si de interfaces.
 %	\end{block}
 %\end{frame}
 %
 %\begin{frame}[t]
-%	\frametitle{PatrÛn Mixin}
+%	\frametitle{Patr√≥n Mixin}
 %	\begin{center}
 %		\includegraphics[clip=true,width=.75\linewidth]{images/nogof/Mixin00.eps}
 %	\end{center}
 %\end{frame}
 %
 %\begin{frame}[t]
-%	\frametitle{PatrÛn Mixin}
+%	\frametitle{Patr√≥n Mixin}
 %	\begin{center}
 %		\includegraphics[clip=true,width=0.9\linewidth]{images/nogof/Mixin01.eps}
 %	\end{center}
 %\end{frame}
 %
 %\begin{frame}[t]
-%	\frametitle{PatrÛn Mixin}
+%	\frametitle{Patr√≥n Mixin}
 %	\begin{center}
 %		\includegraphics[clip=true,width=\linewidth]{images/nogof/Mixin02.eps}
 %	\end{center}
@@ -523,36 +589,36 @@ Refactorizaciones y Antipatrones}
 
 \section{Refactorizaciones}
 
-\subsection{IntroducciÛn}
-
-\begin{frame}[t]
-	\frametitle{Refactorizaciones}
-	\begin{block}{RefactorizaciÛn}
-	Proceso de cambio de un sistema software de forma que su comportamiento externo no se vea afectado pero que mejora su estructura interna.
-	% (ej. atributos relacionados a clase).
-	% Extraer datos de una direcciÛn a una clase direcciÛn
-	\end{block}
-	\uncover<2->{
-		\begin{block}{Malos olores (bad smells)}
-		Indicios sobre potenciales problemas en el cÛdigo (ej. cÛdigo replicado, mismo mÈtodo en varias subclases).
-		\end{block}
-	}
-\end{frame}
+%\subsection{Introducci√≥n}
+%
+%\begin{frame}[t]
+%	\frametitle{Refactorizaciones}
+%	\begin{block}{Refactorizaci√≥n}
+%	Proceso de cambio de un sistema software de forma que su comportamiento externo no se vea afectado pero que mejora su estructura interna.
+%	% (ej. atributos relacionados a clase).
+%	% Extraer datos de una direcci√≥n a una clase direcci√≥n
+%	\end{block}
+%	\uncover<2->{
+%		\begin{block}{Malos olores (bad smells)}
+%		Indicios sobre potenciales problemas en el c√≥digo (ej. c√≥digo replicado, mismo m√©todo en varias subclases).
+%		\end{block}
+%	}
+%\end{frame}
+%
+%\begin{frame}[c]
+%	\frametitle{Esquema de una Refactorizaci√≥n}
+%	\begin{enumerate}
+%		\item<1-> Nombre
+%		\item<2-> S√≠ntomas
+%		\item<3-> Causas
+%		\item<4-> Refactorizaciones propuestas
+%		\item<5-> Beneficios esperados
+%		\item<6-> Efectos colaterales y contraindicaciones
+%	\end{enumerate}
+%\end{frame}
 
 \begin{frame}[c]
-	\frametitle{Esquema de una RefactorizaciÛn}
-	\begin{enumerate}
-		\item<1-> Nombre
-		\item<2-> SÌntomas
-		\item<3-> Causas
-		\item<4-> Refactorizaciones propuestas
-		\item<5-> Beneficios esperados
-		\item<6-> Efectos colaterales y contraindicaciones
-	\end{enumerate}
-\end{frame}
-
-\begin{frame}[c]
-	\frametitle{Refactorizaciones m·s Populares~\cite{counsell:2006}}
+	\frametitle{Refactorizaciones m√°s Populares~\cite{counsell:2006}}
 	\begin{enumerate}
 		\item Pull Up Method.
 		\item Move Method.
@@ -568,8 +634,8 @@ Refactorizaciones y Antipatrones}
 
 \begin{frame}
 	\frametitle{Pull Up Method}
-	\begin{block}{DescripciÛn}
-		Existen mÈtodos \emph{cuasi}-idÈnticos en las subclases
+	\begin{block}{Descripci√≥n}
+		Existen m√©todos \emph{cuasi}-id√©nticos en las subclases
 	\end{block}
 	\begin{columns}
 		\column{.50\linewidth}
@@ -594,8 +660,8 @@ Refactorizaciones y Antipatrones}
 
 \begin{frame}
 	\frametitle{Move Method}
-	\begin{block}{DescripciÛn}
-		Un mÈtodo de una clase A es m·s utilizado en una clase B que en la clase A donde est· definido.
+	\begin{block}{Descripci√≥n}
+		Un m√©todo de una clase A es m√°s utilizado en una clase B que en la clase A donde est√° definido.
 	\end{block}
 	\begin{columns}
 		\column{.45\linewidth}
@@ -619,8 +685,8 @@ Refactorizaciones y Antipatrones}
 
 %\begin{frame}
 %    \frametitle{Add Parameter}
-%    \begin{block}{DescripciÛn}
-%        Un mÈtodo precisa conocer m·s informaciÛn cuando es invocado por los clientes de una clase.
+%    \begin{block}{Descripci√≥n}
+%        Un m√©todo precisa conocer m√°s informaci√≥n cuando es invocado por los clientes de una clase.
 %    \end{block}
 %    \begin{columns}
 %        \column{.45\linewidth}
@@ -643,15 +709,15 @@ Refactorizaciones y Antipatrones}
 %    \ \\
 %    \only<3->{
 %    \begin{center}
-%        \textbf{° OJO !} puede crear listas interminables de argumentos
+%        \textbf{¬° OJO !} puede crear listas interminables de argumentos
 %    \end{center}}
 %\end{frame}
 
 \begin{frame}
 	\frametitle{Introduce Parameter Object}
-	\begin{block}{DescripciÛn}
+	\begin{block}{Descripci√≥n}
 		% You have a group of parameters that naturally go together.
-		Existen grupos de par·metros que est·n naturalmente relacionados
+		Existen grupos de par√°metros que est√°n naturalmente relacionados
 	\end{block}
 	\begin{columns}
 		\column{.45\linewidth}
@@ -675,8 +741,8 @@ Refactorizaciones y Antipatrones}
 
 \begin{frame}
 	\frametitle{Move Field}
-	\begin{block}{DescripciÛn}
-	Un atributo de una clase A es m·s utilizado en una clase B que en la clase A donde est· definido.
+	\begin{block}{Descripci√≥n}
+	Un atributo de una clase A es m√°s utilizado en una clase B que en la clase A donde est√° definido.
 	\end{block}
 	\begin{columns}
 		\column{.45\linewidth}
@@ -700,9 +766,9 @@ Refactorizaciones y Antipatrones}
 
 \begin{frame}
 	\frametitle{Rename Field/Method}
-	\begin{block}{DescripciÛn}
+	\begin{block}{Descripci√≥n}
 	% The name of a method does not reveal its purpose.
-	El nombre de un atributo o mÈtodo no es significativo
+	El nombre de un atributo o m√©todo no es significativo
 	\end{block}
 	\begin{columns}
 		\column{.45\linewidth}
@@ -726,9 +792,9 @@ Refactorizaciones y Antipatrones}
 
 \begin{frame}[fragile]
 	\frametitle{Replace Magic Number with Symbolic Constant}
-	\begin{block}{DescripciÛn}
+	\begin{block}{Descripci√≥n}
 	% The name of a method does not reveal its purpose.
-	Tenemos una constante numÈrica con un significado bien definido
+	Tenemos una constante num√©rica con un significado bien definido
 	\end{block}
 	\begin{scriptsize}
 	\begin{semiverbatim}
@@ -757,7 +823,7 @@ Refactorizaciones y Antipatrones}
 
 \begin{frame}[fragile]
 	\frametitle{Replace Type Code with State/Strategy}
-	\begin{block}{DescripciÛn}
+	\begin{block}{Descripci√≥n}
 		Una clase tiene un atributo que indica tipo y que afecta al comportamiento de la clase
 	\end{block}
 	\begin{columns}
@@ -780,105 +846,105 @@ Refactorizaciones y Antipatrones}
 
 \section{Antipatrones}
 
-\subsection{Concepto de AntipatrÛn}
-
-\begin{frame}[c]
-	\frametitle{AntipatrÛn de DiseÒo Software}
-	\begin{block}{AntipatrÛn Software}
-        Un \emph{antipatrÛn} describe una soluciÛn que genera consecuencias negativas para el desarrollo de un proyecto pero que se aplica recurrentemente a determinados problema.
-	\end{block}
-\end{frame}
-
-%%\begin{frame}[c]
-%%	\frametitle{Utilidad de los Antipatrones}
-%%	\begin{enumerate}[<+->]
-%%        \item Asocian situaciones conflictivas a un \alert{conjunto de soluciones}.
-%%        \item Identifican situaciones conflictivas recurrentes.
-%%        \item Proporcionan un vocabulario estandarizado para dichas situaciones conflictivas.
-%%        \item Mal de muchos, consuelo de tontos.
-%%	\end{enumerate}
-%%\end{frame}
-
-\begin{frame}[t]
-	\frametitle{Antipatrones, Refactorizaciones y Patrones}
-    \only<1>{
-    \rput[lt](0,-1.5){
-        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema00.eps}}}
-    \only<2>{
-    \rput[lt](0,-1.5){
-        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema01.eps}}}
-    \only<3>{
-    \rput[lt](0,-1.5){
-        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema02.eps}}}
-    \only<4>{
-    \rput[lt](0,-1.5){
-        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema03.eps}}}
-    \only<5>{
-    \rput[lt](0,-1.5){
-        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema04.eps}}}
-    \only<6>{
-    \rput[lt](0,-1.5){
-        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema05.eps}}}
-    \only<7>{
-    \rput[lt](0,-1.5){
-        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema06.eps}}}
-\end{frame}
-
-\begin{frame}[c]
-	\frametitle{Origen de los Antipatrones}
-    \begin{enumerate}[<+->]
-        \item Prisas.     % Mala calidad
-        \item ApatÌa.     % Para quÈ
-        \item Estrechez de miras. % No utilizar nuevas y probadas soluciones
-        \item Pereza.     % Confiar en ya se har· con la herramienta
-        \item Avaricia.   % Sistema excesivamente complejo
-        \item Ignorancia. % Pereza intelectual.
-        \item Orgullo.    % stdio est· mal.
-    \end{enumerate}
-\end{frame}
+%\subsection{Concepto de Antipatr√≥n}
+%
+%\begin{frame}[c]
+%	\frametitle{Antipatr√≥n de Dise√±o Software}
+%	\begin{block}{Antipatr√≥n Software}
+%        Un \emph{antipatr√≥n} describe una soluci√≥n que genera consecuencias negativas para el desarrollo de un proyecto pero que se aplica recurrentemente a determinados problema.
+%	\end{block}
+%\end{frame}
+%
+%%%\begin{frame}[c]
+%%%	\frametitle{Utilidad de los Antipatrones}
+%%%	\begin{enumerate}[<+->]
+%%%        \item Asocian situaciones conflictivas a un \alert{conjunto de soluciones}.
+%%%        \item Identifican situaciones conflictivas recurrentes.
+%%%        \item Proporcionan un vocabulario estandarizado para dichas situaciones conflictivas.
+%%%        \item Mal de muchos, consuelo de tontos.
+%%%	\end{enumerate}
+%%%\end{frame}
+%
+%\begin{frame}[t]
+%	\frametitle{Antipatrones, Refactorizaciones y Patrones}
+%    \only<1>{
+%    \rput[lt](0,-1.5){
+%        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema00.eps}}}
+%    \only<2>{
+%    \rput[lt](0,-1.5){
+%        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema01.eps}}}
+%    \only<3>{
+%    \rput[lt](0,-1.5){
+%        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema02.eps}}}
+%    \only<4>{
+%    \rput[lt](0,-1.5){
+%        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema03.eps}}}
+%    \only<5>{
+%    \rput[lt](0,-1.5){
+%        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema04.eps}}}
+%    \only<6>{
+%    \rput[lt](0,-1.5){
+%        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema05.eps}}}
+%    \only<7>{
+%    \rput[lt](0,-1.5){
+%        \includegraphics[width=11cm,keepaspectratio=true]{images/antipatterns/antipatternSchema06.eps}}}
+%\end{frame}
+%
+%\begin{frame}[c]
+%	\frametitle{Origen de los Antipatrones}
+%    \begin{enumerate}[<+->]
+%        \item Prisas.     % Mala calidad
+%        \item Apat√≠a.     % Para qu√©
+%        \item Estrechez de miras. % No utilizar nuevas y probadas soluciones
+%        \item Pereza.     % Confiar en ya se har√° con la herramienta
+%        \item Avaricia.   % Sistema excesivamente complejo
+%        \item Ignorancia. % Pereza intelectual.
+%        \item Orgullo.    % stdio est√° mal.
+%    \end{enumerate}
+%\end{frame}
 
 \subsection{Spaghetti Code}
 
 \begin{frame}[c]
 	\frametitle{Spaghetti Code}
     \begin{block}{Spaghetti Code}
-        El cÛdigo creada tiene una muy pobre estructura. Dicho cÛdigo suele ser bastante
-        monolÌtico o dependencias exÛticas entre mÈtodos y objetos. En general,  resulta difÌcil de entender, actualizar, mantener y reutilizar (\href{http://imgs.xkcd.com/comics/goto.png}{ejemplo})).
+        El c√≥digo creada tiene una muy pobre estructura. Dicho c√≥digo suele ser bastante
+        monol√≠tico o dependencias ex√≥ticas entre m√©todos y objetos. En general,  resulta dif√≠cil de entender, actualizar, mantener y reutilizar (\href{http://imgs.xkcd.com/comics/goto.png}{ejemplo})).
     \end{block}
 \end{frame}
 
 \begin{frame}[c]
-	\frametitle{SÌntomas de Spaghetti Code}
+	\frametitle{S√≠ntomas de Spaghetti Code}
     \begin{enumerate}[<+->]
-        \item MÈtodos excesivamente largos (m·s de un palmo).
+        \item M√©todos excesivamente largos (m√°s de un palmo).
         \item Dependencias no naturales entre objetos.
-        \item MÈtodos con pocos o ning˙n par·metros.
+        \item M√©todos con pocos o ning√∫n par√°metros.
         \item Propiedades y atributos utilizados como variables globales.
-        \item Flujo de ejecuciÛn difÌcil de seguir y predecir.
-        \item Estructuras de decisiÛn altamente ramificadas (\emph{if} infernal).
-        \item CÛdigo difÌcil de modificar.
+        \item Flujo de ejecuci√≥n dif√≠cil de seguir y predecir.
+        \item Estructuras de decisi√≥n altamente ramificadas (\emph{if} infernal).
+        \item C√≥digo dif√≠cil de modificar.
     \end{enumerate}
 \end{frame}
 
 \begin{frame}[c]
 	\frametitle{Causas de Spaghetti Code}
     \begin{enumerate}[<+->]
-        \item Malos h·bitos de programaciÛn.
+        \item Malos h√°bitos de programaci√≥n.
         \item Falta de encapsulamiento.
-        \item Falta de una adecuada descomposiciÛn.
+        \item Falta de una adecuada descomposici√≥n.
         \item Abuso de copiar y pegar.
         \item Abuso de observadores y similares.
         \item Abuso de abstracciones y polimorfismo.
-        \item Abuso de inyecciÛn de dependencias.
+        \item Abuso de inyecci√≥n de dependencias.
     \end{enumerate}
 \end{frame}
 
 \begin{frame}[c]
     \frametitle{Soluciones al Spaghetti Code}
     \begin{enumerate}[<+->]
-        \item AplicaciÛn de refactorizaciones como \emph{Extract Method}.
-        \item Dividir clases grandes en dos o m·s clases.
-        \item AplicaciÛn de patrones de diseÒo como \emph{Strategy}, \emph{State}, \emph{TemplateMethod}, \emph{Visitor} o \emph{Abstract Factory}.
+        \item Aplicaci√≥n de refactorizaciones como \emph{Extract Method}.
+        \item Dividir clases grandes en dos o m√°s clases.
+        \item Aplicaci√≥n de patrones de dise√±o como \emph{Strategy}, \emph{State}, \emph{TemplateMethod}, \emph{Visitor} o \emph{Abstract Factory}.
     \end{enumerate}
 \end{frame}
 
@@ -887,25 +953,25 @@ Refactorizaciones y Antipatrones}
 \begin{frame}
 	\frametitle{Copy \& Paste Programming}
 	\begin{block}{Copy \& Paste Programming}
-		Un trozo de cÛdigo cuasi-idÈntico aparece en diversos lugares del cÛdigo de un sistema software.
+		Un trozo de c√≥digo cuasi-id√©ntico aparece en diversos lugares del c√≥digo de un sistema software.
 	\end{block}
 \end{frame}
 
 \begin{frame}[c]
-    \frametitle{SÌntomas del Copy \& Paste Programming}
+    \frametitle{S√≠ntomas del Copy \& Paste Programming}
     \begin{enumerate}[<+->]
-        \item La soluciÛn de un \emph{bug} requiere modificaciones similares en diversas partes del cÛdigo.
-        \item El cÛdigo es artificialmente largo y repetitivo.
-        \item La forma de reutilizaciÛn de ciertos trozos de cÛdigo se basa en \emph{copiar y pegar}.
+        \item La soluci√≥n de un \emph{bug} requiere modificaciones similares en diversas partes del c√≥digo.
+        \item El c√≥digo es artificialmente largo y repetitivo.
+        \item La forma de reutilizaci√≥n de ciertos trozos de c√≥digo se basa en \emph{copiar y pegar}.
     \end{enumerate}
 \end{frame}
 
 \begin{frame}[c]
 	\frametitle{Causas del Copy \& Paste Programming}
     \begin{enumerate} [<+->]
-        \item UtilizaciÛn de Copia y Pega como instrumento de reutilizaciÛn.
-        \item Falta de tiempo para crear los mecanismos de reutilizaciÛn adecuados.
-        \item Falta de habilidad tÈcnicas para crear elementos sw reutilizables.
+        \item Utilizaci√≥n de Copia y Pega como instrumento de reutilizaci√≥n.
+        \item Falta de tiempo para crear los mecanismos de reutilizaci√≥n adecuados.
+        \item Falta de habilidad t√©cnicas para crear elementos sw reutilizables.
         \item Ausencia de recompensas a nivel corporativo por los esfuerzos realizados para crear elementos reutilizables.
         \item Falta de estabilidad en los equipos de trabajo.
         \item Exceso de orgullo.
@@ -915,12 +981,12 @@ Refactorizaciones y Antipatrones}
 \begin{frame}[c]
     \frametitle{Soluciones al Copy \& Paste Programming}
     \begin{enumerate}[<+->]
-        \item AplicaciÛn de refactorizaciones como \emph{Extract Method} o \emph{Pull-Up Method}.
+        \item Aplicaci√≥n de refactorizaciones como \emph{Extract Method} o \emph{Pull-Up Method}.
         \item Utilizar polimorfismo.
-        \item Utilizar genÈricos.
+        \item Utilizar gen√©ricos.
         \item Utilizar funciones lambda.
-        \item Utilizar metadatos y parametrizaciÛn externa.
-        \item Utilizar plantillas de generaciÛn de cÛdigo.
+        \item Utilizar metadatos y parametrizaci√≥n externa.
+        \item Utilizar plantillas de generaci√≥n de c√≥digo.
     \end{enumerate}
 \end{frame}
 
@@ -929,18 +995,18 @@ Refactorizaciones y Antipatrones}
 \begin{frame}
 	\frametitle{Lava Flow}
 	\begin{block}{Lava Flow}
-        Un conjunto de cÛdigo creado durante una fase inicial de concepciÛn de una parte de un proyecto sw pasa a formar parte de dicho proyecto sw. Pasado un cierto tiempo, la mayorÌa de los desarrolladores ni entiende la utilidad o propÛsito de dicho trozo de cÛdigo ni se atreve a modificarlo.
+        Un conjunto de c√≥digo creado durante una fase inicial de concepci√≥n de una parte de un proyecto sw pasa a formar parte de dicho proyecto sw. Pasado un cierto tiempo, la mayor√≠a de los desarrolladores ni entiende la utilidad o prop√≥sito de dicho trozo de c√≥digo ni se atreve a modificarlo.
 	\end{block}
 \end{frame}
 
 \begin{frame}[c]
-    \frametitle{SÌntomas del Lava Flow}
+    \frametitle{S√≠ntomas del Lava Flow}
     \begin{enumerate}[<+->]
-        \item Porciones de cÛdigo sin justificaciÛn aparente dentro de un proyecto.
-        \item Porciones de cÛdigo aparentemente crÌticas sin documentar.
-        \item Porciones de cÛdigo comentadas dentro de clases que est·n en producciÛn.
-        \item Porciones de cÛdigo comentadas como \emph{To be reviewed} o \emph{To be replaced}.
-        \item Existencia de porciones de cÛdigo muerto.
+        \item Porciones de c√≥digo sin justificaci√≥n aparente dentro de un proyecto.
+        \item Porciones de c√≥digo aparentemente cr√≠ticas sin documentar.
+        \item Porciones de c√≥digo comentadas dentro de clases que est√°n en producci√≥n.
+        \item Porciones de c√≥digo comentadas como \emph{To be reviewed} o \emph{To be replaced}.
+        \item Existencia de porciones de c√≥digo muerto.
         \item Existencia de versiones de clases obsoletas.
     \end{enumerate}
 \end{frame}
@@ -948,13 +1014,13 @@ Refactorizaciones y Antipatrones}
 \begin{frame}[c]
 	\frametitle{Causas del Lava Flow}
     \begin{enumerate} [<+->]
-        \item UtilizaciÛn de cÛdigo de prototipado o exploratorio como cÛdigo de producciÛn sin limpieza previo.
-        \item CÛdigo escrito sin adherirse a las normas de la organizaciÛn.
-        \item DistribuciÛn de cÛdigo sin control de calidad previo.
-        \item Inexistencia de polÌticas de gestiÛn de la configuraciÛn.
+        \item Utilizaci√≥n de c√≥digo de prototipado o exploratorio como c√≥digo de producci√≥n sin limpieza previo.
+        \item C√≥digo escrito sin adherirse a las normas de la organizaci√≥n.
+        \item Distribuci√≥n de c√≥digo sin control de calidad previo.
+        \item Inexistencia de pol√≠ticas de gesti√≥n de la configuraci√≥n.
         \item Inexistencia de una arquitectura sw.
         \item Requisitos poco definidos y muy cambiantes.
-        \item Facilidad para descartar cÛdigo sin borrarlo.
+        \item Facilidad para descartar c√≥digo sin borrarlo.
     \end{enumerate}
 \end{frame}
 
@@ -962,10 +1028,10 @@ Refactorizaciones y Antipatrones}
     \frametitle{Soluciones al Lava Flow}
     \begin{enumerate}[<+->]
         \item Refactorizaciones extensivas y por tanto caras.
-        \item PolÌticas claras de gestiÛn de la configuraciÛn.
+        \item Pol√≠ticas claras de gesti√≥n de la configuraci√≥n.
         \item Existencia de una arquitectura bien definida.
-        \item Existencia de unas reglas arquitectÛnicas bien definidas.
-        \item PolÌticas claras de control de la calidad.
+        \item Existencia de unas reglas arquitect√≥nicas bien definidas.
+        \item Pol√≠ticas claras de control de la calidad.
     \end{enumerate}
 \end{frame}
 
@@ -974,15 +1040,15 @@ Refactorizaciones y Antipatrones}
 \begin{frame}
 	\frametitle{La Cosa}
 	\begin{block}{La Cosa (The Blob)}
-        Clase principal o central de una aplicaciÛn que se encarga de coordinar el resto de clases, las cuales b·sicamente encapsulan datos.
+        Clase principal o central de una aplicaci√≥n que se encarga de coordinar el resto de clases, las cuales b√°sicamente encapsulan datos.
 	\end{block}
 \end{frame}
 
 \begin{frame}[c]
-    \frametitle{SÌntomas de La Cosa}
+    \frametitle{S√≠ntomas de La Cosa}
     \begin{enumerate}[<+->]
         \item Clases con muchas funciones y propiedades.
-        \item Clases con una baja cohesiÛn (LCOM4 alto).
+        \item Clases con una baja cohesi√≥n (LCOM4 alto).
         \item Clases controladores de numerosos eventos.
         \item Clases con excesivas dependencias.
         \item Clases con un alto consumo de memoria.
@@ -992,7 +1058,7 @@ Refactorizaciones y Antipatrones}
 \begin{frame}[c]
 	\frametitle{Causas de La Cosa}
     \begin{enumerate} [<+->]
-        \item Falta de habilidades relacionadas con la orientaciÛn a objetos.
+        \item Falta de habilidades relacionadas con la orientaci√≥n a objetos.
         \item Ausencia de una arquitectura software.
         \item Ausencia de control de calidad.
         \item Pereza a la hora de asignar responsabilidades.
@@ -1002,9 +1068,9 @@ Refactorizaciones y Antipatrones}
 \begin{frame}[c]
     \frametitle{Soluciones a La Cosa}
     \begin{enumerate}[<+->]
-        \item Agrupar mÈtodos y atributos en bloques fuertemente cohesionados.
-        \item Asignar estos conjuntos de mÈtodos y atributos a clases.
-        \item Eliminar asociaciones in˙tiles.
+        \item Agrupar m√©todos y atributos en bloques fuertemente cohesionados.
+        \item Asignar estos conjuntos de m√©todos y atributos a clases.
+        \item Eliminar asociaciones in√∫tiles.
         \item Aplicar patrones para manejar estados y comportamientos variables.
     \end{enumerate}
 \end{frame}
@@ -1015,19 +1081,19 @@ Refactorizaciones y Antipatrones}
 %\begin{frame}
 %	\frametitle{Singletonitis}
 %	\begin{block}{Escenario}
-%		Un programador abusa del patrÛn \emph{Singleton}, el cual usa principalmente para evitar tener que mantener referencias entre objetos o pasar par·metros.
+%		Un programador abusa del patr√≥n \emph{Singleton}, el cual usa principalmente para evitar tener que mantener referencias entre objetos o pasar par√°metros.
 %	\end{block}
 %	\uncover<2->{
 %		\begin{block}{Problemas}
 %			\begin{enumerate}
 %				\item<2-> Todos los asociados con las variables globales.
-%				\item<3-> No se pueden crear varias instancias de clases que no tienen \alert{porquÈ tener una instancia ˙nica}.
+%				\item<3-> No se pueden crear varias instancias de clases que no tienen \alert{porqu√© tener una instancia √∫nica}.
 %			\end{enumerate}
 %		\end{block}
 %	}
 %	\uncover<4->{
-%		\begin{block}{SoluciÛn}
-%			No usar el patrÛn \emph{singleton} cuando no tiene sentido usarlo.
+%		\begin{block}{Soluci√≥n}
+%			No usar el patr√≥n \emph{singleton} cuando no tiene sentido usarlo.
 %		\end{block}
 %	}
 %\end{frame}
@@ -1037,14 +1103,14 @@ Refactorizaciones y Antipatrones}
 %\subsection{Sumario}
 %
 %\begin{frame}[c]
-%	\frametitle{øQuÈ tengo que saber de todo esto?}
+%	\frametitle{¬øQu√© tengo que saber de todo esto?}
 %	\begin{enumerate}
-%		\item<1-> Comprender el concepto de patrÛn.
-%		\item<2-> \alert<8>{Saber aplicar el cat·logo de patrones GoF}.
+%		\item<1-> Comprender el concepto de patr√≥n.
+%		\item<2-> \alert<8>{Saber aplicar el cat√°logo de patrones GoF}.
 %		\item<3-> \alert<8>{Saber aplicar los patrones \emph{tipo} y \emph{mixin}}.
-%		\item<4-> Comprender el concepto de antipatrÛn.
-%		\item<5-> Saber aplicar los antipatrones \emph{programaciÛn basada en copiar y pegar} y \emph{singletonitis}.
-%		\item<6-> Comprender el concepto de refactorizaciÛn.
+%		\item<4-> Comprender el concepto de antipatr√≥n.
+%		\item<5-> Saber aplicar los antipatrones \emph{programaci√≥n basada en copiar y pegar} y \emph{singletonitis}.
+%		\item<6-> Comprender el concepto de refactorizaci√≥n.
 %		\item<7-> Saber aplicar las refactorizaciones \emph{pull up method}, \emph{move method}, \emph{add parameter}, \emph{move field}, \emph{rename method} y \emph{rename field}.
 %	\end{enumerate}
 %\end{frame}
