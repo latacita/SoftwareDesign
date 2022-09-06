@@ -16,7 +16,7 @@
 \makeatother
 
 \setbeamercovered{dynamic}
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{3}
 \setbeamercolor{frametitle}{fg=black,bg=white}
 \setbeamercolor{section in toc shaded}{fg=black}
 \setbeamercolor{section in toc}{fg=red}
@@ -32,7 +32,9 @@
   \frametitle{Índice}
 	\tableofcontents[currentsection,
         sectionstyle=show/shaded,
-        subsectionstyle=hide]
+        subsectionstyle=hide,
+        subsubsectionstyle=hide]
+        
 \end{frame}}
 
 \AtBeginSubsection[]
@@ -42,9 +44,23 @@
   		currentsection,
   		sectionstyle=shaded/shaded,
   		currentsubsection,
-  		subsectionstyle=show/shaded/hide
-		]
+  		subsectionstyle=show/shaded/hide,
+        subsubsectionstyle=hide
+	]
 \end{frame}}
+
+\AtBeginSubsubsection[]
+{\begin{frame}[c]
+	\frametitle{Índice}
+	\tableofcontents[
+  		sectionstyle=shaded/shaded,
+  		currentsubsection,
+  		subsectionstyle=shaded/shaded/hide,
+        subsubsectionstyle=show/shaded/hide/hide
+	]
+\end{frame}}
+
+
 
 \setbeamercolor{frametitle}{fg=black,bg=white}
 

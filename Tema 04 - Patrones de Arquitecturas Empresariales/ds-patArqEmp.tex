@@ -3,6 +3,10 @@
 \input{slidesHeader.tex}
 \input{customListings.tex}
 
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
 \title[Patrones de SIE]{Patrones para el Desarrollo de Arquitecturas Empresariales}
 
 \author[P. Sánchez]{\alert{Pablo Sánchez}}
@@ -664,29 +668,599 @@
     \end{enumerate}
 \end{frame}
 
-\subsection{Identificación de Entidades}
+\section{Capa de Persistencia}
+
+\begin{frame}
+    \frametitle{Capa de Persistencia}
+    \only<1|handout:2>{
+        \rput[lt](0,0){
+            \includegraphics[width=\linewidth]{images/persistencia/intro/enterpriseArchitectures00.eps}
+        }
+    }
+    \only<2|handout:2>{
+        \rput[lt](0,0){
+            \includegraphics[width=\linewidth]{images/persistencia/intro/enterpriseArchitectures01.eps}
+        }
+    }
+\end{frame}
+
+\subsection{Impedancia Objeto - Persistencia}
 
 \begin{frame}[c]
-    \frametitle{Características de los Identificadores}
-    \begin{itemize}
-        \item Inmutables.
-        \item Significativos.
-    \end{itemize}
-    %% Copiar de Fowler.
-
-    Ids.
-
-    - Únicos para cada objeto.
-    - Un único atributo o combinación de atributos.
-    - Artificial, generado por la aplicación (ojo con los sistemas distribuidos o interconectados)
-    - Inmutables
-    - IDs artificiales pueden esconderse al usuario.
-    -
+    \frametitle{Impedancia Objeto - (Relacional)}
+    \begin{block}{Impedancia Objetual}
+    La \emph{impedancia objetual} se refiere al desacoplamiento que puede existir en los conceptos del paradigma orientado a objetos y el paradigma utilizado por el almacén de persistencia.
+    \end{block}
 \end{frame}
 
 \begin{frame}[c]
-    \frametitle{Claves Naturales vs Claves Surogadas}
-    %% Copiar de Fowler.
+    \frametitle{Impedancia Objeto - Relacional}
+    \begin{center}
+        \includegraphics[width=\linewidth]{images/persistencia/ooMismatch/ooMismatch00.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Impedancia Objeto - Relacional}
+    \begin{center}
+        \includegraphics[width=0.8\linewidth]{images/persistencia/ooMismatch/ooMismatch01.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Impedancia OR: Claves Primarias}
+    \begin{center}
+        \includegraphics[width=\linewidth]{images/persistencia/ooMismatch/ooMismatch09.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Impedancia OR: Atributos Multivaluados}
+    \begin{center}
+        \includegraphics[width=\linewidth]{images/persistencia/ooMismatch/ooMismatch02.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Impedancia OR: Atributos Multivaluados}
+    \begin{center}
+        \includegraphics[width=0.8\linewidth]{images/persistencia/ooMismatch/ooMismatch03.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Impedancia OR: Herencia}
+    \begin{center}
+        \includegraphics[width=\linewidth]{images/persistencia/ooMismatch/ooMismatch04.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Impedancia OR: Navegabilidad Asociaciones}
+    \begin{center}
+        \includegraphics[width=\linewidth]{images/persistencia/ooMismatch/ooMismatch05.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Impedancia OR: Navegabilidad Asociaciones}
+    \begin{center}
+        \includegraphics[width=0.8\linewidth]{images/persistencia/ooMismatch/ooMismatch06.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Impedancia OR: Asociaciones Muchos a Muchos}
+    \begin{center}
+        \includegraphics[width=\linewidth]{images/persistencia/ooMismatch/ooMismatch07.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Impedancia OR: Asociaciones Muchos a Muchos}
+    \begin{center}
+        \includegraphics[width=0.8\linewidth]{images/persistencia/ooMismatch/ooMismatch08.eps}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Impedancia OR: Granularidad}
+    \begin{center}
+        \includegraphics[width=0.8\linewidth]{images/persistencia/ooMismatch/ooMismatch08.eps}
+    \end{center}
+\end{frame}
+
+\subsection{Puentes Objeto-(Relacional)}
+
+\begin{frame}
+    \frametitle{Puentes de Persistencia de Objetos}
+    \only<1|handout:0>{
+        \rput[lt](0,0){
+            \includegraphics[width=\linewidth]{images/persistencia/ooMismatch/orm00.eps}
+        }
+    }
+    \only<2|handout:0>{
+        \rput[lt](0,0){
+            \includegraphics[width=\linewidth]{images/persistencia/ooMismatch/orm01.eps}
+        }
+    }
+    \only<3|handout:1>{
+        \rput[lt](0,0){
+            \includegraphics[width=\linewidth]{images/persistencia/ooMismatch/orm02.eps}
+        }
+    }
+    \only<4|handout:0>{
+        \rput[lt](0,0){
+            \includegraphics[width=\linewidth]{images/persistencia/ooMismatch/orm03.eps}
+        }
+    }
+\end{frame}
+
+\subsection{Patrones Estructurales}
+
+\subsubsection{Class to Table}
+
+\begin{frame}[c]
+    \frametitle{Class to Table}
+    \begin{block}{Problema}
+        \begin{enumerate}
+            \item ¿Cómo transformo una clase a relacional?
+        \end{enumerate}
+    \end{block}
+    \uncover<2->{
+        \begin{block}{Solución}
+            Si la clase es una \emph{entidad}, no está afectada por herencia, y no tiene atributos multivaluados ni asociaciones con otras clases:
+            \begin{enumerate}
+                \item<3-> Crear una tabla con el mismo nombre de la clase.
+                \item<4-> Crear una columna en dicha tabla por cada atributo de la clase.
+                \item<5-> Asignar como tipo de la columna el tipo que corresponda a cada atributo.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Class to Table}
+    \rput[lt](3.5,0){
+            \includegraphics[width=0.50\linewidth]{images/persistencia/structure/class2Table00.eps}
+    }
+    \only<2->{
+        \rput[lt](3,-4){
+                \includegraphics[width=0.50\linewidth]{images/persistencia/structure/class2Table01.eps}
+        }
+    }
+\end{frame}
+
+\subsubsection{Identity Field}
+
+\begin{frame}[c]
+    \frametitle{Identity Field}
+    \begin{block}{Problema}
+        \begin{enumerate}
+            \item<1-> ¿Cómo consigo que cada objeto de una clase tenga asociada una clave primaria que pueda utilizar para almacenarlo en una tabla de una base de datos relacional?
+            \item<2-> ¿Cómo consigo mantener la correspondencia entre cada objeto de una clase y su correspondiente representación relacional cuando los objetos no tienen clave natural?
+        \end{enumerate}
+    \end{block}
+    \uncover<3->{
+        \begin{block}{Solución}
+            \begin{enumerate}
+                \item<4-> Incorporar un nuevo atributo, representando una clave artificial, para aquellos objetos que no poseen una clave natural, o cuya clave natural se considere inadecuada para el modelo relacional.
+                \item<5-> Para las claves artificiales, elegir una estrategia de generación.
+            \end{enumerate}
+        \end{block}
+    }
+    %% To be discussed:
+    %% - Natural vs Artifical Key
+    %% - Single vs Compound Key
+    %% - Key Type
+    %% - Table Unique vs Database Unique
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Generación de Claves Artificales}
+    \begin{enumerate}
+        \item<1-> Columna autoincrementada
+            \begin{itemize}
+                \item<2-> Clave no disponible hasta finalizar la transacción.
+                \item<3-> Impide \emph{escrituras en batch}
+            \end{itemize}
+        \item<4-> Sequence
+            \begin{itemize}
+                \item<5-> No disponible en todos los gestores.
+            \end{itemize}
+        \item<6-> GUID.
+            \begin{itemize}
+                \item<7-> Demasiado grandes y complejos.
+            \end{itemize}
+        \item<8-> Generada por la aplicación (ORM).
+    \end{enumerate}
+\end{frame}
+
+
+\subsubsection{Foreign Key Mapping}
+
+\begin{frame}[c]
+    \frametitle{Foreign Key Mapping}
+    \begin{block}{Problema}
+        ¿Cómo transformo una asociación entre dos clases $A$ y $B$ al modelo relacional?
+    \end{block}
+    \uncover<2->{
+        \begin{block}{Solución}
+            Si una clase $A$ posee un extremo de asociación referenciando una clase $B$
+            con multiplicidad máxima uno, puedo añadir en la tabla correspondiente a la clase $A$ una clave externa a la tabla de la clase $B$.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Foreign Key Mapping}
+    \rput[lt](1.5,0.5){
+            \includegraphics[width=0.75\linewidth]{images/persistencia/structure/foreignKey00.eps}
+    }
+    \only<2->{
+        \rput[lt](2.25,-3.5){
+                \includegraphics[width=0.60\linewidth]{images/persistencia/structure/foreignKey01.eps}
+        }
+    }
+\end{frame}
+
+\subsubsection{Association Table Mapping}
+
+\begin{frame}[c]
+    \frametitle{Association Table Mapping}
+    \begin{block}{Problema}
+        ¿Cómo transformo una asociación entre clases al modelo relacional?
+    \end{block}
+    \uncover<2->{
+        \begin{block}{Solución}
+            \begin{enumerate}
+                \item<2-> Si ambos extremos de asociación tiene multiplicidad superior a uno, crear una tabla intermedia $A\_B$ que almacene la relación entre ambas clases.
+                \item<3-> La tabla intermedia almacenará como datos las claves primarias asociadas a las clases $A$ y $B$.
+                \item<4-> Cada una de estas claves primarias almacenadas será una clave externa a su correspondiente tabla.
+                \item<5-> La clave primaria de la tabla intermedia será la unión de las claves primarias de las tablas relacionadas.
+             \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Association Table Mapping}
+    \rput[lt](1.25,0.5){
+            \includegraphics[width=0.80\linewidth]{images/persistencia/structure/associationTable00.eps}
+    }
+    \only<2->{
+        \rput[lt](0.85,-3){
+                \includegraphics[width=0.75\linewidth]{images/persistencia/structure/associationTable01.eps}
+        }
+    }
+\end{frame}
+
+\subsubsection{Embedded Value}
+
+\begin{frame}[c]
+    \frametitle{Embedded Value}
+    \begin{block}{Problema}
+        ¿Cómo mapeo asociaciones con \emph{value objects} de manera eficiente?
+    \end{block}
+    \uncover<3->{
+        \begin{block}{Solución}
+            Si una clase $C$ tiene una asociación de multiplicidad máxima $1$ con un \emph{value object } $V$, puedo simplemente añadir los campos de $V$ a la clase $C$ y luego mapear $C$ como una clase simple.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Embedded Value}
+    \only<1|handout:1>{
+        \rput[lt](3.25,0){
+                \includegraphics[width=0.50\linewidth]{images/persistencia/structure/embeddedValue00.eps}
+        }
+    }
+    \only<2-|handout:0>{
+        \rput[lt](3.2,0){
+                \includegraphics[width=0.50\linewidth]{images/persistencia/structure/embeddedValue01.eps}
+        }
+    }
+    \only<3-|handout:1>{
+        \rput[lt](1,-4){
+                \includegraphics[width=0.75\linewidth]{images/persistencia/structure/embeddedValue02.eps}
+        }
+    }
+\end{frame}
+
+\subsubsection{Serialised LOB}
+
+\begin{frame}[c]
+    \frametitle{Serialised LOB}
+    \begin{block}{Problema}
+        ¿Cómo mapeo asociaciones con \emph{value objects} y/o \emph{entities} internas a un \emph{aggregate} de manera eficiente?
+    \end{block}
+    \uncover<3->{
+        \begin{block}{Solución}
+            Guardar todo un grafo de objetos en una única columna de tipo \emph{LOB}.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Serialised LOB}
+    \rput[lt](1.50,0){
+        \includegraphics[width=0.75\linewidth]{images/persistencia/structure/serializedBlob00.eps}
+    }
+    \only<2->{
+        \rput[lt](4.5,-3){
+                \includegraphics[width=0.18\linewidth]{images/persistencia/structure/serializedBlob01.eps}
+        }
+    }
+    %% BLOB vs CLOB
+\end{frame}
+
+\subsubsection{Single Table Inheritance}
+
+\begin{frame}[c]
+    \frametitle{Single Table Inheritance}
+    \begin{block}{Problema}
+        \begin{enumerate}
+            \item ¿Cómo transformo una jerarquía de herencia en un esquema relacional?
+        \end{enumerate}
+    \end{block}
+    \uncover<2->{
+        \begin{block}{Solución}
+            \begin{enumerate}
+                \item<2-> Comprimir la jerarquía en una sola clase, incorporando los atributos de las clases hijas a la raíz de la jerarquía.
+                \item<3-> Añadir un atributo que indique de qué tipo concreto es cada instancia de la nueva clase resultante.
+                \item<4-> Transforma la clase resultante a una tabla.
+                \item<5-> Cuando un objeto de dicha jerarquía se almacena dentro de la tabla resultante, los atributos que no correspondan a dicha instance simplemente se ignoran.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Single Table Inheritance}
+    \only<1|handout:1>{
+        \rput[lt](3.5,0.5){
+                \includegraphics[width=0.40\linewidth]{images/persistencia/structure/singleTable00.eps}
+        }
+    }
+    \only<2-|handout:0>{
+        \rput[lt](2.70,0.5){
+                \includegraphics[width=0.55\linewidth]{images/persistencia/structure/singleTable02.eps}
+        }
+    }
+    \only<3-|handout:1>{
+        \rput[lt](0.75,-4){
+                \includegraphics[width=0.80\linewidth]{images/persistencia/structure/singleTable01.eps}
+        }
+    }
+    %% Simple
+    %% Recupera bien todos los objetos de una jearquía (consultas polimórficas).
+    %% Columnas vacías y valores nulos.
+    %% Una tabla para todos puede generar demasiado contención y castigar la búsqueda por subclases.
+    %% Precisa de una clave a nivel de padre.
+\end{frame}
+
+\subsubsection{Concrete Table Inheritance}
+
+\begin{frame}[c]
+    \frametitle{Concrete Table Inheritance}
+    \begin{block}{Problema}
+        \begin{enumerate}
+            \item ¿Cómo transformo una jerarquía de herencia en un esquema relacional?
+        \end{enumerate}
+    \end{block}
+    \uncover<2->{
+        \begin{block}{Solución}
+            \begin{enumerate}
+                \item<2-> Hacer descender los atributos de la clases abstractas a las clases concretas.
+                \item<3-> Transformar cada clase resultante a una tabla.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Concrete Table Inheritance}
+    \only<1|handout:1>{
+        \rput[lt](2.5,0.5){
+                \includegraphics[width=0.55\linewidth]{images/persistencia/structure/concreteTable00.eps}
+        }
+    }
+    \only<2-|handout:0>{
+        \rput[lt](2.5,0.5){
+                \includegraphics[width=0.55\linewidth]{images/persistencia/structure/concreteTable01.eps}
+        }
+    }
+    \only<3-|handout:1>{
+        \rput[lt](3,-4){
+                \includegraphics[width=0.50\linewidth]{images/persistencia/structure/concreteTable02.eps}
+        }
+    }
+    %% El SGBD podría no controlar la colisión de claves.
+    %% Gestiona mal las asociaciones a nivel de superclase.
+    %% Gestiona mal las consultas polimórficas.
+    %% No posee valores nulos
+    %% Mejora la contención de la base de datos.
+    %% No penaliza las operaciones a nivel de subclase.
+    %% Hay columnas redundantes que pueden afectar a la evolución de la base de datos
+\end{frame}
+
+\subsubsection{Class Table Inheritance}
+
+\begin{frame}[c]
+    \frametitle{Class Table Inheritance}
+    \begin{block}{Problema}
+        \begin{enumerate}
+            \item ¿Cómo transformo una jerarquía de herencia en un esquema relacional?
+        \end{enumerate}
+    \end{block}
+    \uncover<2->{
+        \begin{block}{Solución}
+            \begin{enumerate}
+                \item<2-> Transformar cada clase en la jerarquía a una tabla.
+                \item<3-> Mantener las relaciones de herencia mediante relaciones de clave externa.
+            \end{enumerate}
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Class Table Inheritance}
+    \only<1->{
+        \rput[lt](2.75,0.5){
+                \includegraphics[width=0.50\linewidth]{images/persistencia/structure/concreteTable00.eps}
+        }
+    }
+    \only<2->{
+        \rput[lt](0.5,-3.5){
+                \includegraphics[width=.9\linewidth]{images/persistencia/structure/classTableInh01.eps}
+        }
+    }
+    %% Obligar a hace joins siempre.
+    %% Gestiona mal las consultas polimóficas.
+    %% No posee valores nulos
+    %% No hay columnas redundantes que pueden afectar a la evolución de la base de datos
+\end{frame}
+
+\subsubsection{Resumen de Estrategias de Transformación de Herencias}
+
+\begin{frame}[c]
+    \frametitle{Estrategias de Transformación de Herencias}
+    \begin{center}
+        \begin{tabular}{||l|c|c|c||}
+        \hline \hline
+                                & Single         & Concrete        & Class   \\ \hline
+        Gestión Valores Nulos   & \xmark         & \cmark          & \cmark  \\ \hline
+        Consultas Polimórficas  & \cmark         & \xmark          & \xmark  \\ \hline
+        Consultas Subclases     & \xmark         & \cmark          & \cmark  \\ \hline
+        Uso de \emph{Joins}     & \cmark         & \cmark          & \xmark  \\ \hline
+        Contención BBDD         & \xmark         & \cmark          & \cmark  \\ \hline
+        Evolución Superclase    & \cmark         & \xmark          & \cmark  \\ \hline
+        Clave Primaria Dispersa & \xmark         & \cmark          & \xmark  \\ \hline
+        \hline
+        \end{tabular}
+    \end{center}
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{¿Cuándo Aplicar cada Estrategia?}
+    \begin{enumerate}
+        \item<1-> Single Table Inheritance
+            \begin{itemize}
+                \item<2-> Jerarquías de herencia donde las subclases básicamente redefinen comportamientos y añaden pocos datos nuevos.
+                \item<3-> La mayoría de las asociaciones entre clases y búsquedas se realizan a nivel de superclase.
+            \end{itemize}
+        \item<4-> Concrete Table Inheritance
+            \begin{itemize}
+                \item<5-> Jerarquías de herencia donde las superclases son muy abstractas, no tienen apenas correspondencia a nivel de dominio y básicamente abstraen datos y comportamientos comunes.
+                \item<6-> La mayoría de las asociaciones entre clases y búsquedas se realizan a nivel de subclase.
+            \end{itemize}
+        \item<7-> Class Table Inheritance
+            \begin{itemize}
+                \item<8-> No se dan ninguna de las condiciones anteriores con claridad.
+            \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\subsection{Patrones de Acceso a Datos}
+
+\subsubsection{Data Mappers/Data Access Objects}
+
+\begin{frame}[c]
+    \frametitle{Data Mappers/Data Access Objects}
+    \begin{block}{Problema}
+        ¿Cómo almacenar, recuperar, actualizar y eliminar objetos del almacén persistente manteniendo al modelo de dominio independiente de su forma de almacenamiento?
+    \end{block}
+    \uncover<2->{
+        \begin{block}{Solución}
+            Por cada clase $C$ del modelo de dominio, crear una clase $C_Mapper$ que se encargue de gestionar la correspondiente transformación.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Data Mappers/Data Access Objects}
+    \begin{center}
+        \includegraphics[width=0.8\linewidth]{images/persistencia/behaviour/dataMapper.eps}
+    \end{center}
+    %% Colecciones ¿qué he añadido o borrado?
+    %% Gestión de los agregados.
+    %% ¿Cómo inicializar objetos? Getters y setters.
+    %% Genericidad
+\end{frame}
+
+\subsubsection{Metadata Mapping}
+
+\begin{frame}[c]
+    \frametitle{Metadata Mapping}
+    \begin{block}{Problema}
+        ¿Cómo saber cómo se ha realizado la transformación objeto-relacional para poder así implementar \emph{Data Mappers} genéricos?
+    \end{block}
+    \uncover<2->{
+        \begin{block}{Solución}
+            Especificar mediante algún tipo de mecanismo adecuado la correspondencia entre elementos del modelo de dominio y el esquema relacional asociado.
+        \end{block}
+    }
+    %% TODO: Poner ejemplo.
+    %% Reflection: Slow, hard to debug. No recompilations required.
+    %% XML, SourceCode, Database.
+\end{frame}
+
+\subsubsection{Identity Map}
+
+\begin{frame}[c]
+    \frametitle{Identity Map}
+    \begin{block}{Problema}
+        ¿Cómo puedo evitar cargar múltiples copias de un mismo objeto?
+    \end{block}
+    \uncover<2->{
+        \begin{block}{Solución}
+            \begin{enumerate}
+                \item<2-> Crear un sitio donde almacenar los objetos que se carguen desde el almacén de persistencia.
+                \item<3-> Antes de cargar cualquier objeto, comprobar si está ya cargado en el almacén persistente.
+            \end{enumerate}
+        \end{block}
+    }
+    %% Un hombre con dos relojes nunca sabe que hora es.
+    %% Problemas de concurrencia.
+    %% Problemas de rendimiento: gasto de memoria, llamadas remotas lentas.
+    %% Sólo requerido para los agregados.
+\end{frame}
+
+\subsubsection{Lazy Load}
+
+\begin{frame}[c]
+    \frametitle{Lazy Load}
+    \begin{block}{Problema}
+        ¿Cómo evito tener que cargar todos los objetos asociados a un objeto $O$ cuando cargo $O$ desde el almacén persistente?
+    \end{block}
+    \uncover<2->{
+        \begin{block}{Solución}
+            Aplicar el patrón \emph{proxy} de manera que los objetos referenciados por el objeto $O$ sólo se carguen bajo demanda.
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}[c]
+    \frametitle{Lazy Load}
+    \begin{center}
+        \includegraphics[width=0.9\linewidth]{images/persistencia/behaviour/lazyLoad.eps}
+    \end{center}
+    %% Todos los accesos se hacen a través de getters
+\end{frame}
+
+\subsubsection{Query Object}
+
+\begin{frame}[c]
+    \frametitle{Query Object}
+    \begin{block}{Problema}
+        ¿Cómo realizar búsquedas de objetos arbitrariamente complejas sobre colecciones de datos largas aprovechando las facilidades proporcionadas por el almacén persistente?
+    \end{block}
+    \uncover<2->{
+        \begin{block}{Solución}
+            Representar las consultas como objetos independientes del almacén persistente y pasar estos objetos a los repositorios de acceso a datos.
+        \end{block}
+    }
 \end{frame}
 
 
